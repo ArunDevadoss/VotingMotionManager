@@ -54,11 +54,11 @@ To successfully complete the assignment, follow these instructions:
 	
 	
 
-## High Level Programme Design:
+## High Level Programme Design
 
 
 
-## Domain Objects:
+## Domain Objects
 
   Motion  - Holds information about Motion(Motion Id, Motion State(PASSED/FAILED/TIED), Motion Status(CLOSED/OPENED) & Voter)
   
@@ -77,7 +77,7 @@ To successfully complete the assignment, follow these instructions:
 
 
 
-## VotingMotionManager: 
+## VotingMotionManager
 
 
 Has independent methods for the given scenarios/requirement and they are all tested using Junit(As per requirement)
@@ -117,7 +117,7 @@ Methods to accomodate all the scenarios/rquirements for Motion Voting Programme.
 		
 		o Equal number of "Y" Yes and "N" No votes, Motion is TIED.
 
-## Enums:
+## Enums
 
 Motion and Vote specific constants are maintained in Enums
 
@@ -127,7 +127,7 @@ Motion and Vote specific constants are maintained in Enums
 	
 	3) VoteState - Y/N
 
-## Exceptions:
+## Exceptions
 
 User Defined Exceptions are below 
 
@@ -141,20 +141,20 @@ User Defined Exceptions are below
   
   	5) VicePresidentVoteException
   
-## Constants:
+## Constants
 
 Programme specific constants, Exception messages are added in Constants
 
 	1) MotionVotingConstants
 
-## Utils:
+## Utils
 
 DateTime related methods are added in this Utils
 
   	1) DateTimeUtils
   
 
-## Assumptions In Design:
+## Assumptions In Design
 
 	1) As per the requirement , all the scenarios/requirements are covered in VotingMotionManager.java and it has been tested completely using JUnit.
 	
