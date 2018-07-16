@@ -85,16 +85,37 @@ Has independent methods for the given scenarios/requirement and they are all tes
 Methods to accomodate all the scenarios/rquirements for Motion Voting Programme.
 
 
-  	1) String getMotionState(final int motionId)
+  	1) String getMotionState(final int motionId) throws MotionException
+	
+		o Returns Current State of a Motion - Passed/Failed/Tied.
+    		
+  	2) void closeVotingOnMotion(final int motionId) throws CloseVotingException, MotionException
+	
+		o CLOSE Motion for voting once done. Checks Motion is eligible for closing. If you try to close Motion within 15 minutes after it was opened , exception will be thrown
   
-  	2) void closeVotingOnMotion(final int motionId)
+  	3) MotionResult getMotionResult(final int motionId) throws MotionException
+	
+		When a motion is CLOSED for voting, a result is returned that describes
+			o whether the motion passed or failed
+			o the number of yes and no votes
+			o the time that voting opened and closed
   
-  	3) MotionResult getMotionResult(final int motionId)
-  
-  	4) void castVotingOnMotion(final int motionId, final int voterId, final String voteState,
-			final boolean isVicePresedent)
+  	4) void castVotingOnMotion(final int motionId, final int voterId, final Enum<VoteState> voteState,final boolean isVicePresedent)	throws MaximumVoteOnMotionException, MotionException, DuplicateVoteException, VicePresidentVoteException
+	
+		o Checks various voting on Motion conditions.
+	 
+	  	o Checks for Motion OPENED for Voting, Duplicate Voters, Maximum number of Votes, VP voting conditions.
+			
 			
   	5) void setMotionState(final int motionId)
+	
+		o Sets Motion state to PASSED/FAILED/TIED.
+		
+		o Number of Yes votes greater than No votes, Motion is PASSED. 
+		
+		o Number of Yes votes less than No votes, Motion is FAILED. 
+		
+		o Equal number of Yes and No votes, Motion is Tied.
 
 ## Enums:
 
