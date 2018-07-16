@@ -107,15 +107,15 @@ Methods to accomodate all the scenarios/rquirements for Motion Voting Programme.
 	  	o Checks for Motion OPENED for Voting, Duplicate Voters, Maximum number of Votes, VP voting conditions.
 			
 			
-  	5) void setMotionState(final int motionId)
+  	5) void setMotionState(final int motionId) throws MotionException
 	
 		o Sets Motion state to PASSED/FAILED/TIED.
 		
-		o Number of Yes votes greater than No votes, Motion is PASSED. 
+		o Number of "Y" (Yes) votes greater than "N" (No) votes, Motion is PASSED. 
 		
-		o Number of Yes votes less than No votes, Motion is FAILED. 
+		o Number of "Y" (Yes) votes less than "N" No votes, Motion is FAILED. 
 		
-		o Equal number of Yes and No votes, Motion is Tied.
+		o Equal number of "Y" Yes and "N" No votes, Motion is TIED.
 
 ## Enums:
 
