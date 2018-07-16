@@ -118,13 +118,13 @@ Methods to accomodate all the scenarios/rquirements for Motion Voting Programme.
 
 ## Assumptions In Design:
 
-	1) As per the requirement , all the scenarios/requirements are covered in VotingMotionManager.java and it has been tested 		completely using JUnit.
+	1) As per the requirement , all the scenarios/requirements are covered in VotingMotionManager.java and it has been tested completely using JUnit.
 	
 	2) This programme doesn't have standalone code.
 	
 	3) Can be tested only with JUnit.
 	
-	4) Some of the Motion information such as Name, Description etc are not captured as part of the design/coding, as the requirment 	 doesn't talk about it.
+	4) Some of the Motion information such as Name, Description etc are not captured as part of the design/coding, as the requirment  doesn't talk about it.
 	
-	5) Some of the Voter information such as Voter First Name & Last Name are not captured as part of the design/coding, as the 		requirement doesn't talk about it.
+	5) Some of the Voter information such as Voter First Name & Last Name are not captured as part of the design/coding, as the requirement doesn't talk about it.
 
