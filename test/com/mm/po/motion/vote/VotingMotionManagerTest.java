@@ -14,6 +14,7 @@ import org.junit.Test;
 import com.mm.po.motion.vote.domain.Motion;
 import com.mm.po.motion.vote.enums.MotionState;
 import com.mm.po.motion.vote.enums.MotionStatus;
+import com.mm.po.motion.vote.enums.VoteState;
 import com.mm.po.motion.vote.exception.CloseVotingException;
 import com.mm.po.motion.vote.exception.DuplicateVoteException;
 import com.mm.po.motion.vote.exception.MaximumVoteOnMotionException;
@@ -58,7 +59,7 @@ public class VotingMotionManagerTest {
 		constructMotion(1, LocalDateTime.now().plusMinutes(10));
 
 		votingMotionManager.setMotionMap(motionMap);
-		votingMotionManager.castVotingOnMotion(1, 1, "Y", false);
+		votingMotionManager.castVotingOnMotion(1, 1, VoteState.Y, false);
 
 	}
 
@@ -82,15 +83,15 @@ public class VotingMotionManagerTest {
 
 		votingMotionManager.setMotionMap(motionMap);
 
-		votingMotionManager.castVotingOnMotion(1, 1, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 2, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 3, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 4, "N", false);
+		votingMotionManager.castVotingOnMotion(1, 1, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 2, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 3, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 4, VoteState.N, false);
 
-		votingMotionManager.castVotingOnMotion(2, 1, "Y", false);
-		votingMotionManager.castVotingOnMotion(2, 2, "N", false);
-		votingMotionManager.castVotingOnMotion(2, 3, "N", false);
-		votingMotionManager.castVotingOnMotion(2, 4, "N", false);
+		votingMotionManager.castVotingOnMotion(2, 1, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(2, 2, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(2, 3, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(2, 4, VoteState.N, false);
 
 		votingMotionManager.closeVotingOnMotion(1);
 		votingMotionManager.closeVotingOnMotion(2);
@@ -147,7 +148,7 @@ public class VotingMotionManagerTest {
 		constructMotion(1, LocalDateTime.now().minusMinutes(10));
 
 		votingMotionManager.setMotionMap(motionMap);
-		votingMotionManager.castVotingOnMotion(1, 1, "Y", false);
+		votingMotionManager.castVotingOnMotion(1, 1, VoteState.Y, false);
 
 		votingMotionManager.closeVotingOnMotion(1);
 
@@ -170,7 +171,7 @@ public class VotingMotionManagerTest {
 		constructMotion(1, LocalDateTime.now().minusMinutes(16));
 
 		votingMotionManager.setMotionMap(motionMap);
-		votingMotionManager.castVotingOnMotion(1, 1, "Y", false);
+		votingMotionManager.castVotingOnMotion(1, 1, VoteState.Y, false);
 
 		votingMotionManager.closeVotingOnMotion(1);
 		votingMotionManager.closeVotingOnMotion(1);
@@ -214,7 +215,7 @@ public class VotingMotionManagerTest {
 		constructMotion(1, LocalDateTime.now().minusMinutes(16));
 
 		votingMotionManager.setMotionMap(motionMap);
-		votingMotionManager.castVotingOnMotion(1, 1, "Y", false);
+		votingMotionManager.castVotingOnMotion(1, 1, VoteState.Y, false);
 
 		votingMotionManager.closeVotingOnMotion(1);
 		assertEquals(MotionStatus.CLOSED, votingMotionManager.getMotionMap().get(1).getMotionStatus());
@@ -257,8 +258,8 @@ public class VotingMotionManagerTest {
 
 		constructMotion(1);
 		votingMotionManager.setMotionMap(motionMap);
-		votingMotionManager.castVotingOnMotion(1, 1, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 1, "Y", false);
+		votingMotionManager.castVotingOnMotion(1, 1, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 1, VoteState.Y, false);
 
 	}
 
@@ -279,120 +280,120 @@ public class VotingMotionManagerTest {
 		constructMotion(1);
 
 		votingMotionManager.setMotionMap(motionMap);
-		votingMotionManager.castVotingOnMotion(1, 1, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 2, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 3, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 4, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 5, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 6, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 7, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 8, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 9, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 10, "Y", false);
+		votingMotionManager.castVotingOnMotion(1, 1, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 2, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 3, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 4, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 5, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 6, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 7, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 8, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 9, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 10, VoteState.Y, false);
 
-		votingMotionManager.castVotingOnMotion(1, 11, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 12, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 13, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 14, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 15, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 16, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 17, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 18, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 19, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 20, "Y", false);
+		votingMotionManager.castVotingOnMotion(1, 11, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 12, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 13, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 14, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 15, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 16, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 17, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 18, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 19, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 20, VoteState.Y, false);
 
-		votingMotionManager.castVotingOnMotion(1, 21, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 22, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 23, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 24, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 25, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 26, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 27, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 28, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 29, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 30, "Y", false);
+		votingMotionManager.castVotingOnMotion(1, 21, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 22, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 23, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 24, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 25, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 26, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 27, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 28, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 29, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 30, VoteState.Y, false);
 
-		votingMotionManager.castVotingOnMotion(1, 31, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 32, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 33, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 34, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 35, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 36, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 37, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 38, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 39, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 40, "Y", false);
+		votingMotionManager.castVotingOnMotion(1, 31, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 32, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 33, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 34, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 35, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 36, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 37, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 38, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 39, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 40, VoteState.Y, false);
 
-		votingMotionManager.castVotingOnMotion(1, 41, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 42, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 43, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 44, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 45, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 46, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 47, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 48, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 49, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 50, "Y", false);
+		votingMotionManager.castVotingOnMotion(1, 41, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 42, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 43, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 44, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 45, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 46, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 47, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 48, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 49, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 50, VoteState.Y, false);
 
-		votingMotionManager.castVotingOnMotion(1, 51, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 52, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 53, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 54, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 55, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 56, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 57, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 58, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 59, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 60, "Y", false);
+		votingMotionManager.castVotingOnMotion(1, 51, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 52, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 53, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 54, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 55, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 56, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 57, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 58, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 59, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 60, VoteState.Y, false);
 
-		votingMotionManager.castVotingOnMotion(1, 61, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 62, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 63, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 64, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 65, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 66, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 67, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 68, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 69, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 70, "Y", false);
+		votingMotionManager.castVotingOnMotion(1, 61, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 62, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 63, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 64, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 65, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 66, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 67, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 68, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 69, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 70, VoteState.Y, false);
 
-		votingMotionManager.castVotingOnMotion(1, 71, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 72, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 73, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 74, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 75, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 76, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 77, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 78, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 79, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 80, "Y", false);
+		votingMotionManager.castVotingOnMotion(1, 71, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 72, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 73, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 74, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 75, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 76, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 77, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 78, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 79, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 80, VoteState.Y, false);
 
-		votingMotionManager.castVotingOnMotion(1, 81, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 82, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 83, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 84, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 85, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 86, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 87, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 88, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 89, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 90, "Y", false);
+		votingMotionManager.castVotingOnMotion(1, 81, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 82, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 83, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 84, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 85, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 86, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 87, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 88, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 89, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 90, VoteState.Y, false);
 
-		votingMotionManager.castVotingOnMotion(1, 91, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 92, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 93, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 94, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 95, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 96, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 97, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 98, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 99, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 100, "Y", false);
+		votingMotionManager.castVotingOnMotion(1, 91, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 92, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 93, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 94, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 95, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 96, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 97, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 98, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 99, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 100, VoteState.Y, false);
 
 		votingMotionManager.setMotionState(1);
 		assertEquals(MotionState.PASSED, votingMotionManager.getMotionMap().get(1).getMotionState());
 
-		votingMotionManager.castVotingOnMotion(1, 101, "Y", true);
+		votingMotionManager.castVotingOnMotion(1, 101, VoteState.Y, true);
 
 	}
 
@@ -413,120 +414,120 @@ public class VotingMotionManagerTest {
 		constructMotion(1);
 
 		votingMotionManager.setMotionMap(motionMap);
-		votingMotionManager.castVotingOnMotion(1, 1, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 2, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 3, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 4, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 5, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 6, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 7, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 8, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 9, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 10, "Y", false);
+		votingMotionManager.castVotingOnMotion(1, 1, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 2, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 3, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 4, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 5, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 6, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 7, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 8, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 9, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 10, VoteState.Y, false);
 
-		votingMotionManager.castVotingOnMotion(1, 11, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 12, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 13, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 14, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 15, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 16, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 17, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 18, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 19, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 20, "Y", false);
+		votingMotionManager.castVotingOnMotion(1, 11, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 12, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 13, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 14, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 15, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 16, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 17, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 18, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 19, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 20, VoteState.Y, false);
 
-		votingMotionManager.castVotingOnMotion(1, 21, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 22, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 23, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 24, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 25, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 26, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 27, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 28, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 29, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 30, "Y", false);
+		votingMotionManager.castVotingOnMotion(1, 21, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 22, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 23, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 24, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 25, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 26, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 27, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 28, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 29, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 30, VoteState.Y, false);
 
-		votingMotionManager.castVotingOnMotion(1, 31, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 32, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 33, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 34, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 35, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 36, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 37, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 38, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 39, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 40, "Y", false);
+		votingMotionManager.castVotingOnMotion(1, 31, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 32, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 33, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 34, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 35, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 36, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 37, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 38, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 39, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 40, VoteState.Y, false);
 
-		votingMotionManager.castVotingOnMotion(1, 41, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 42, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 43, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 44, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 45, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 46, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 47, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 48, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 49, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 50, "Y", false);
+		votingMotionManager.castVotingOnMotion(1, 41, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 42, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 43, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 44, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 45, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 46, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 47, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 48, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 49, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 50, VoteState.Y, false);
 
-		votingMotionManager.castVotingOnMotion(1, 51, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 52, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 53, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 54, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 55, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 56, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 57, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 58, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 59, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 60, "N", false);
+		votingMotionManager.castVotingOnMotion(1, 51, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 52, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 53, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 54, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 55, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 56, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 57, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 58, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 59, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 60, VoteState.N, false);
 
-		votingMotionManager.castVotingOnMotion(1, 61, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 62, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 63, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 64, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 65, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 66, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 67, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 68, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 69, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 70, "N", false);
+		votingMotionManager.castVotingOnMotion(1, 61, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 62, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 63, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 64, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 65, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 66, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 67, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 68, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 69, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 70, VoteState.N, false);
 
-		votingMotionManager.castVotingOnMotion(1, 71, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 72, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 73, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 74, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 75, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 76, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 77, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 78, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 79, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 80, "N", false);
+		votingMotionManager.castVotingOnMotion(1, 71, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 72, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 73, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 74, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 75, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 76, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 77, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 78, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 79, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 80, VoteState.N, false);
 
-		votingMotionManager.castVotingOnMotion(1, 81, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 82, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 83, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 84, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 85, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 86, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 87, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 88, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 89, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 90, "N", false);
+		votingMotionManager.castVotingOnMotion(1, 81, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 82, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 83, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 84, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 85, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 86, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 87, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 88, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 89, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 90, VoteState.N, false);
 
-		votingMotionManager.castVotingOnMotion(1, 91, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 92, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 93, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 94, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 95, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 96, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 97, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 98, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 99, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 100, "N", false);
+		votingMotionManager.castVotingOnMotion(1, 91, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 92, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 93, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 94, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 95, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 96, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 97, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 98, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 99, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 100, VoteState.N, false);
 
 		votingMotionManager.setMotionState(1);
 		assertEquals(MotionState.TIED, votingMotionManager.getMotionMap().get(1).getMotionState());
 
-		votingMotionManager.castVotingOnMotion(1, 101, "Y", true);
+		votingMotionManager.castVotingOnMotion(1, 101, VoteState.Y, true);
 
 	}
 
@@ -549,118 +550,118 @@ public class VotingMotionManagerTest {
 		constructMotion(1);
 
 		votingMotionManager.setMotionMap(motionMap);
-		votingMotionManager.castVotingOnMotion(1, 1, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 2, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 3, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 4, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 5, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 6, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 7, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 8, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 9, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 10, "Y", false);
+		votingMotionManager.castVotingOnMotion(1, 1, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 2, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 3, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 4, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 5, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 6, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 7, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 8, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 9, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 10, VoteState.Y, false);
 
-		votingMotionManager.castVotingOnMotion(1, 11, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 12, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 13, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 14, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 15, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 16, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 17, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 18, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 19, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 20, "Y", false);
+		votingMotionManager.castVotingOnMotion(1, 11, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 12, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 13, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 14, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 15, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 16, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 17, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 18, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 19, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 20, VoteState.Y, false);
 
-		votingMotionManager.castVotingOnMotion(1, 21, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 22, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 23, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 24, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 25, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 26, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 27, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 28, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 29, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 30, "Y", false);
+		votingMotionManager.castVotingOnMotion(1, 21, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 22, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 23, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 24, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 25, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 26, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 27, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 28, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 29, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 30, VoteState.Y, false);
 
-		votingMotionManager.castVotingOnMotion(1, 31, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 32, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 33, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 34, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 35, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 36, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 37, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 38, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 39, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 40, "Y", false);
+		votingMotionManager.castVotingOnMotion(1, 31, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 32, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 33, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 34, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 35, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 36, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 37, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 38, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 39, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 40, VoteState.Y, false);
 
-		votingMotionManager.castVotingOnMotion(1, 41, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 42, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 43, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 44, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 45, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 46, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 47, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 48, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 49, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 50, "Y", false);
+		votingMotionManager.castVotingOnMotion(1, 41, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 42, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 43, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 44, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 45, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 46, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 47, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 48, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 49, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 50, VoteState.Y, false);
 
-		votingMotionManager.castVotingOnMotion(1, 51, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 52, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 53, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 54, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 55, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 56, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 57, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 58, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 59, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 60, "N", false);
+		votingMotionManager.castVotingOnMotion(1, 51, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 52, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 53, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 54, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 55, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 56, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 57, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 58, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 59, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 60, VoteState.N, false);
 
-		votingMotionManager.castVotingOnMotion(1, 61, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 62, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 63, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 64, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 65, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 66, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 67, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 68, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 69, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 70, "N", false);
+		votingMotionManager.castVotingOnMotion(1, 61, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 62, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 63, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 64, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 65, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 66, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 67, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 68, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 69, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 70, VoteState.N, false);
 
-		votingMotionManager.castVotingOnMotion(1, 71, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 72, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 73, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 74, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 75, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 76, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 77, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 78, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 79, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 80, "N", false);
+		votingMotionManager.castVotingOnMotion(1, 71, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 72, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 73, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 74, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 75, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 76, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 77, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 78, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 79, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 80, VoteState.N, false);
 
-		votingMotionManager.castVotingOnMotion(1, 81, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 82, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 83, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 84, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 85, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 86, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 87, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 88, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 89, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 90, "N", false);
+		votingMotionManager.castVotingOnMotion(1, 81, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 82, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 83, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 84, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 85, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 86, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 87, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 88, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 89, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 90, VoteState.N, false);
 
-		votingMotionManager.castVotingOnMotion(1, 91, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 92, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 93, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 94, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 95, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 96, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 97, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 98, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 99, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 100, "N", false);
+		votingMotionManager.castVotingOnMotion(1, 91, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 92, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 93, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 94, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 95, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 96, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 97, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 98, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 99, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 100, VoteState.N, false);
 
-		votingMotionManager.castVotingOnMotion(1, 101, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 102, "Y", false);
+		votingMotionManager.castVotingOnMotion(1, 101, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 102, VoteState.Y, false);
 
 	}
 
@@ -682,15 +683,15 @@ public class VotingMotionManagerTest {
 		constructMotion(1);
 
 		votingMotionManager.setMotionMap(motionMap);
-		votingMotionManager.castVotingOnMotion(1, 1, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 2, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 3, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 4, "N", false);
+		votingMotionManager.castVotingOnMotion(1, 1, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 2, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 3, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 4, VoteState.N, false);
 
 		votingMotionManager.setMotionState(1);
 		assertEquals(MotionState.TIED, votingMotionManager.getMotionMap().get(1).getMotionState());
 
-		votingMotionManager.castVotingOnMotion(1, 5, "N", true);
+		votingMotionManager.castVotingOnMotion(1, 5, VoteState.N, true);
 		assertEquals(MotionStatus.CLOSED, votingMotionManager.getMotionMap().get(1).getMotionStatus());
 
 		votingMotionManager.setMotionState(1);
@@ -716,15 +717,15 @@ public class VotingMotionManagerTest {
 		constructMotion(1);
 
 		votingMotionManager.setMotionMap(motionMap);
-		votingMotionManager.castVotingOnMotion(1, 1, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 2, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 3, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 4, "N", false);
+		votingMotionManager.castVotingOnMotion(1, 1, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 2, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 3, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 4, VoteState.N, false);
 
 		votingMotionManager.setMotionState(1);
 		assertEquals(MotionState.TIED, votingMotionManager.getMotionMap().get(1).getMotionState());
 
-		votingMotionManager.castVotingOnMotion(1, 5, "Y", true);
+		votingMotionManager.castVotingOnMotion(1, 5, VoteState.Y, true);
 		assertEquals(MotionStatus.CLOSED, votingMotionManager.getMotionMap().get(1).getMotionStatus());
 
 		votingMotionManager.setMotionState(1);
@@ -750,15 +751,15 @@ public class VotingMotionManagerTest {
 		constructMotion(1);
 
 		votingMotionManager.setMotionMap(motionMap);
-		votingMotionManager.castVotingOnMotion(1, 1, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 2, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 3, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 4, "N", false);
+		votingMotionManager.castVotingOnMotion(1, 1, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 2, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 3, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 4, VoteState.N, false);
 
 		votingMotionManager.setMotionState(1);
 		assertEquals(MotionState.PASSED, votingMotionManager.getMotionMap().get(1).getMotionState());
 
-		votingMotionManager.castVotingOnMotion(1, 5, "Y", true);
+		votingMotionManager.castVotingOnMotion(1, 5, VoteState.Y, true);
 
 	}
 
@@ -778,15 +779,15 @@ public class VotingMotionManagerTest {
 		constructMotion(1);
 
 		votingMotionManager.setMotionMap(motionMap);
-		votingMotionManager.castVotingOnMotion(1, 1, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 2, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 3, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 4, "N", false);
+		votingMotionManager.castVotingOnMotion(1, 1, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 2, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 3, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 4, VoteState.N, false);
 
 		votingMotionManager.setMotionState(1);
 		assertEquals(MotionState.TIED, votingMotionManager.getMotionMap().get(1).getMotionState());
 
-		votingMotionManager.castVotingOnMotion(1, 5, "Y", false);
+		votingMotionManager.castVotingOnMotion(1, 5, VoteState.Y, false);
 		assertEquals(MotionStatus.CLOSED, votingMotionManager.getMotionMap().get(1).getMotionStatus());
 
 		assertEquals(MotionState.FAILED, votingMotionManager.getMotionMap().get(1).getMotionState());
@@ -809,10 +810,10 @@ public class VotingMotionManagerTest {
 		constructMotion(1);
 
 		votingMotionManager.setMotionMap(motionMap);
-		votingMotionManager.castVotingOnMotion(1, 1, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 2, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 3, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 4, "N", false);
+		votingMotionManager.castVotingOnMotion(1, 1, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 2, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 3, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 4, VoteState.N, false);
 
 		votingMotionManager.setMotionState(1);
 		assertEquals(MotionState.TIED.toString(), votingMotionManager.getMotionState(1));
@@ -838,22 +839,6 @@ public class VotingMotionManagerTest {
 	 * @throws VicePresidentVoteException
 	 * @throws DuplicateVoteException
 	 * @throws MaximumVoteOnMotionException
-	 */
-	@Test(expected = MotionException.class)
-	public void castVotingOnMotion_MotionException()
-			throws MotionException, MaximumVoteOnMotionException, DuplicateVoteException, VicePresidentVoteException {
-
-		votingMotionManager.setMotionMap(motionMap);
-		votingMotionManager.castVotingOnMotion(1, 1, "Y", false);
-
-	}
-
-	/**
-	 * 
-	 * @throws MotionException
-	 * @throws VicePresidentVoteException
-	 * @throws DuplicateVoteException
-	 * @throws MaximumVoteOnMotionException
 	 * @throws CloseVotingException
 	 */
 	@Test(expected = MotionException.class)
@@ -863,14 +848,14 @@ public class VotingMotionManagerTest {
 		constructMotion(1, LocalDateTime.now().minusMinutes(30));
 
 		votingMotionManager.setMotionMap(motionMap);
-		votingMotionManager.castVotingOnMotion(1, 1, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 2, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 3, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 4, "N", false);
+		votingMotionManager.castVotingOnMotion(1, 1, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 2, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 3, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 4, VoteState.N, false);
 
 		votingMotionManager.closeVotingOnMotion(1);
 
-		votingMotionManager.castVotingOnMotion(1, 4, "N", false);
+		votingMotionManager.castVotingOnMotion(1, 4, VoteState.N, false);
 	}
 
 	/**
@@ -906,9 +891,9 @@ public class VotingMotionManagerTest {
 		constructMotion(1);
 
 		votingMotionManager.setMotionMap(motionMap);
-		votingMotionManager.castVotingOnMotion(1, 1, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 2, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 3, "Y", false);
+		votingMotionManager.castVotingOnMotion(1, 1, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 2, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 3, VoteState.Y, false);
 
 		votingMotionManager.setMotionState(1);
 
@@ -931,9 +916,9 @@ public class VotingMotionManagerTest {
 		constructMotion(1);
 
 		votingMotionManager.setMotionMap(motionMap);
-		votingMotionManager.castVotingOnMotion(1, 1, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 2, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 3, "N", false);
+		votingMotionManager.castVotingOnMotion(1, 1, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 2, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 3, VoteState.N, false);
 
 		votingMotionManager.setMotionState(1);
 
@@ -956,10 +941,10 @@ public class VotingMotionManagerTest {
 		constructMotion(1);
 
 		votingMotionManager.setMotionMap(motionMap);
-		votingMotionManager.castVotingOnMotion(1, 1, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 2, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 3, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 4, "N", false);
+		votingMotionManager.castVotingOnMotion(1, 1, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 2, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 3, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 4, VoteState.N, false);
 
 		votingMotionManager.setMotionState(1);
 
@@ -988,18 +973,18 @@ public class VotingMotionManagerTest {
 
 		votingMotionManager.setMotionMap(motionMap);
 
-		votingMotionManager.castVotingOnMotion(1, 1, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 2, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 3, "Y", false);
+		votingMotionManager.castVotingOnMotion(1, 1, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 2, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 3, VoteState.Y, false);
 
-		votingMotionManager.castVotingOnMotion(2, 1, "Y", false);
-		votingMotionManager.castVotingOnMotion(2, 2, "N", false);
-		votingMotionManager.castVotingOnMotion(2, 3, "N", false);
+		votingMotionManager.castVotingOnMotion(2, 1, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(2, 2, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(2, 3, VoteState.N, false);
 
-		votingMotionManager.castVotingOnMotion(3, 1, "Y", false);
-		votingMotionManager.castVotingOnMotion(3, 2, "N", false);
-		votingMotionManager.castVotingOnMotion(3, 3, "Y", false);
-		votingMotionManager.castVotingOnMotion(3, 4, "N", false);
+		votingMotionManager.castVotingOnMotion(3, 1, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(3, 2, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(3, 3, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(3, 4, VoteState.N, false);
 
 		votingMotionManager.setMotionState(1);
 		votingMotionManager.setMotionState(2);
@@ -1026,18 +1011,18 @@ public class VotingMotionManagerTest {
 		constructMotion(1);
 
 		votingMotionManager.setMotionMap(motionMap);
-		votingMotionManager.castVotingOnMotion(1, 1, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 2, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 3, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 4, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 5, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 6, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 7, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 8, "N", false);
-		votingMotionManager.castVotingOnMotion(1, 9, "Y", false);
-		votingMotionManager.castVotingOnMotion(1, 10, "Y", false);
+		votingMotionManager.castVotingOnMotion(1, 1, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 2, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 3, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 4, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 5, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 6, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 7, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 8, VoteState.N, false);
+		votingMotionManager.castVotingOnMotion(1, 9, VoteState.Y, false);
+		votingMotionManager.castVotingOnMotion(1, 10, VoteState.Y, false);
 
-		assertEquals("N", votingMotionManager.getMotionMap().get(1).getVoters().stream()
+		assertEquals(VoteState.N, votingMotionManager.getMotionMap().get(1).getVoters().stream()
 				.filter(m -> m.getVoterId() == 8).findAny().get().getVoteState());
 
 	}

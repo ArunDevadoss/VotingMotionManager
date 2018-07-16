@@ -1,5 +1,7 @@
 package com.mm.po.motion.vote.domain;
 
+import com.mm.po.motion.vote.enums.VoteState;
+
 /**
  * 
  * @author Arun devadoss
@@ -8,24 +10,43 @@ package com.mm.po.motion.vote.domain;
 public class Voter {
 
 	private int voterId;
-	private String voteState;
+	private Enum<VoteState> voteState;
 
+	/**
+	 * @return the voterId
+	 */
 	public int getVoterId() {
 		return voterId;
 	}
 
+	/**
+	 * @param voterId
+	 *            the voterId to set
+	 */
 	public void setVoterId(int voterId) {
 		this.voterId = voterId;
 	}
 
-	public String getVoteState() {
+	/**
+	 * @return the voteState
+	 */
+	public Enum<VoteState> getVoteState() {
 		return voteState;
 	}
 
-	public void setVoteState(String voteState) {
+	/**
+	 * @param voteState
+	 *            the voteState to set
+	 */
+	public void setVoteState(Enum<VoteState> voteState) {
 		this.voteState = voteState;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "Voter [voterId=" + voterId + ", voteState=" + voteState + "]";
