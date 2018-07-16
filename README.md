@@ -120,9 +120,9 @@ Methods to accomodate all the scenarios/rquirements for Motion Voting Programme.
 
 	1) As per the requirement , all the scenarios/requirements are covered in VotingMotionManager.java and it has been tested completely using JUnit.
 	
-	2) This programme doesn't have standalone code.
+	2) This programme is not a standalone code, hence Motion & Voter informations are not captured through command lines.
 	
-	3) Can be tested only with JUnit.
+	3) All scenarios are tested with JUnit. Mocked Motion & Voter informations according to the different scenarios and assertained. Has 26 test cases with boundry conditions, exception cases, happy path, negative conditions with 94.6% of code coverage. 
 	
 	4) Some of the Motion information such as Name, Description etc are not captured as part of the design/coding, as the requirment  doesn't talk about it.
 	
