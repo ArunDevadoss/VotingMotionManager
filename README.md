@@ -73,7 +73,7 @@ To successfully complete the assignment, follow these instructions:
   	o the time that voting opened and closed
 	
 	
-### Note: As I don't want to expose domain object Motion , converting domain object into MotionResult to provide motion information.
+## Note: As I don't want to expose domain object Motion , converting domain object into MotionResult to provide motion information.
 
 
 
