@@ -27,16 +27,16 @@ motion passes or fails.
   
 • The code must support a query to discover the current state of a motion.
 
-# High level programme design:
+## High level programme design:
 
-# Domain Objects:
+## Domain Objects:
 
   Motion
   Voter
   MotionResult - When a motion is closed for voting, this can be returned.
 
 
-# VotingMotionManager:
+## VotingMotionManager:
 Methods to accomodate all the scenarios/rquirements for Motion Voting Programe.
 
   String getMotionState(final int motionId)
@@ -47,7 +47,7 @@ Methods to accomodate all the scenarios/rquirements for Motion Voting Programe.
   void setMotionState(final int motionId)
 
 
-# Exceptions:
+## Exceptions:
 
   CloseVotingException
   DuplicateVoteException
@@ -55,6 +55,6 @@ Methods to accomodate all the scenarios/rquirements for Motion Voting Programe.
   MotionException
   VicePresidentVoteException
 
-# Utils:
+## Utils:
 
   DateTimeUtils
