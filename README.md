@@ -26,3 +26,35 @@ motion passes or fails.
   causes the motion to fail.
   
 • The code must support a query to discover the current state of a motion.
+
+# High level programme design:
+
+# Domain Objects:
+
+  Motion
+  Voter
+  MotionResult - When a motion is closed for voting, this can be returned.
+
+
+# VotingMotionManager:
+Methods to accomodate all the scenarios/rquirements for Motion Voting Programe.
+
+  String getMotionState(final int motionId)
+  void closeVotingOnMotion(final int motionId)
+  MotionResult getMotionResult(final int motionId)
+  void castVotingOnMotion(final int motionId, final int voterId, final String voteState,
+			final boolean isVicePresedent)
+  void setMotionState(final int motionId)
+
+
+# Exceptions:
+
+  CloseVotingException
+  DuplicateVoteException
+  MaximumVoteOnMotionException
+  MotionException
+  VicePresidentVoteException
+
+# Utils:
+
+  DateTimeUtils
