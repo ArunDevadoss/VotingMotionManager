@@ -104,7 +104,7 @@ Methods to accomodate all the scenarios/rquirements for Motion Voting Programme.
 	
 		o Checks various voting on Motion conditions.
 	 
-	  	o Checks for Motion OPENED for Voting, Duplicate Voters, Maximum number of Votes, VP voting conditions along with chaning Motion State & Motion Status.
+	  	o Checks for Motion OPENED for Voting, Duplicate Voters, Maximum number of Votes, VP voting conditions along with changing Motion State & Motion Status.
 			
 			
   	5) void setMotionState(final int motionId) throws MotionException
