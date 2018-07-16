@@ -96,9 +96,19 @@ Methods to accomodate all the scenarios/rquirements for Motion Voting Programme.
 			
   	5) void setMotionState(final int motionId)
 
+## Enums:
+
+Motion and Vote specific constants are maintained in Enums
+
+	1) MotionState - PASSED/FAILED/TIED
+	
+	2) MotionStatus  - OPENED/CLOSED
+	
+	3) VoteState - Y/N
 
 ## Exceptions:
 
+User Defined Exceptions are below 
 
   	1) CloseVotingException
   
@@ -110,8 +120,15 @@ Methods to accomodate all the scenarios/rquirements for Motion Voting Programme.
   
   	5) VicePresidentVoteException
   
+## Constants:
+
+Programme specific constants, Exception messages are added in Constants
+
+	1) MotionVotingConstants
 
 ## Utils:
+
+DateTime related methods are added in this Utils
 
   	1) DateTimeUtils
   
