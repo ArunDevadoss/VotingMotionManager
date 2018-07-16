@@ -85,16 +85,16 @@ Has independent methods for the given scenarios/requirement and they are all tes
 Methods to accomodate all the scenarios/rquirements for Motion Voting Programme.
 
 
-  String getMotionState(final int motionId)
+  	1) String getMotionState(final int motionId)
   
-  void closeVotingOnMotion(final int motionId)
+  	2) void closeVotingOnMotion(final int motionId)
   
-  MotionResult getMotionResult(final int motionId)
+  	3) MotionResult getMotionResult(final int motionId)
   
-  void castVotingOnMotion(final int motionId, final int voterId, final String voteState,
+  	4) void castVotingOnMotion(final int motionId, final int voterId, final String voteState,
 			final boolean isVicePresedent)
 			
-  void setMotionState(final int motionId)
+  	5) void setMotionState(final int motionId)
 
 
 ## Exceptions:
@@ -114,3 +114,17 @@ Methods to accomodate all the scenarios/rquirements for Motion Voting Programme.
 ## Utils:
 
   DateTimeUtils
+  
+
+## Assumptions In Design:
+
+	1) As per the requirement , all the scenarios/requirements are covered in VotingMotionManager.java and it has been tested 		completely using JUnit.
+	
+	2) This programme doesn't have standalone code.
+	
+	3) Can be tested only with JUnit.
+	
+	4) Some of the Motion information such as Name, Description etc are not captured as part of the design/coding, as the requirment 	 doesn't talk about it.
+	
+	5) Some of the Voter information such as Voter First Name & Last Name are not captured as part of the design/coding, as the 		requirement doesn't talk about it.
+
