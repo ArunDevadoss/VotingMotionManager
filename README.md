@@ -1,4 +1,5 @@
 # VotingMotionManager
+
 Java solution for managing the voting on motions once debate has concluded on the senate floor.
 
 The code you create must accept yes and no votes on various motions and determine whether each
@@ -32,20 +33,52 @@ motion passes or fails.
   
 • The code must support a query to discover the current state of a motion.
 
-## High level programme design:
+
+## Instructions
+
+To successfully complete the assignment, follow these instructions:
+
+	1. Write Java classes that meet all requirements.
+	
+	2. Write JUnit tests to verify all requirements.
+	
+	3. DO NOT write any UI code or service code, only domain code.
+	
+	4. DO NOT write any persistence code or authentication code.
+	
+	5. Avoid use of any framework or open source library other than JUnit.
+	
+	6. Readability and maintainability of your code is key.
+	
+	
+	
+
+## High Level Programme Design:
+
 
 ## Domain Objects:
 
-  Motion
+  Motion  - Holds information about Motion(Motion Id, Motion State(PASSED/FAILED/TIED), Motion Status(CLOSED/OPENED) & Voter)
   
-  Voter
+  Voter  - Holds information about Voter and it's state (Yes/No)
   
-  MotionResult - When a motion is closed for voting, this can be returned.
+  MotionResult - When a motion is closed for voting, this object will provide the following information
+  
+  	o whether the motion passed or failed
+  
+  	o the number of yes and no votes
+  
+  	o the time that voting opened and closed
+	
+### Note: As I don't want to expose domain object Motion , converting domain object into MotionResult to provide motion information.
 
 
-## VotingMotionManager:
+## VotingMotionManager: 
 
-Methods to accomodate all the scenarios/rquirements for Motion Voting Programe.
+Has independent methods for the given scenarios/requirement and they are all tested using Junit(As per requirement)
+
+Methods to accomodate all the scenarios/rquirements for Motion Voting Programme.
+
 
   String getMotionState(final int motionId)
   
