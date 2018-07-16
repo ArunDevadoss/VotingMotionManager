@@ -2,8 +2,10 @@
 
 Java solution for managing the voting on motions once debate has concluded on the senate floor.
 
+
 The code you create must accept yes and no votes on various motions and determine whether each
 motion passes or fails.
+
 
 • A motion must not accept any votes until it is opened for voting.
 
@@ -23,18 +25,17 @@ motion passes or fails.
 
 • If voting is a tie, then an attempt to close the motion for voting will cause it to enter a special “tied” state.
 
-  	o In the tied state, the Vice-president of the United States is the only person allowed to
-  vote on the motion. Once the VP votes, the motion is automatically closed.
+  	o In the tied state, the Vice-president of the United States is the only person allowed to vote on the motion. Once the VP 		votes, the motion is automatically closed.
   
  	o The VP is only allowed to vote on motions that are in the tied state.
   
-  	o If the VP is not available to vote, then voting can be forced to the closed state which
-  causes the motion to fail.
+  	o If the VP is not available to vote, then voting can be forced to the closed state which causes the motion to fail.
   
 • The code must support a query to discover the current state of a motion.
 
 
 ## Instructions
+
 
 To successfully complete the assignment, follow these instructions:
 
@@ -56,6 +57,7 @@ To successfully complete the assignment, follow these instructions:
 ## High Level Programme Design:
 
 
+
 ## Domain Objects:
 
   Motion  - Holds information about Motion(Motion Id, Motion State(PASSED/FAILED/TIED), Motion Status(CLOSED/OPENED) & Voter)
@@ -70,10 +72,13 @@ To successfully complete the assignment, follow these instructions:
   
   	o the time that voting opened and closed
 	
+	
 ### Note: As I don't want to expose domain object Motion , converting domain object into MotionResult to provide motion information.
 
 
+
 ## VotingMotionManager: 
+
 
 Has independent methods for the given scenarios/requirement and they are all tested using Junit(As per requirement)
 
@@ -94,6 +99,7 @@ Methods to accomodate all the scenarios/rquirements for Motion Voting Programme.
 
 ## Exceptions:
 
+
   CloseVotingException
   
   DuplicateVoteException
@@ -103,6 +109,7 @@ Methods to accomodate all the scenarios/rquirements for Motion Voting Programme.
   MotionException
   
   VicePresidentVoteException
+  
 
 ## Utils:
 
