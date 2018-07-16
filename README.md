@@ -100,11 +100,11 @@ Methods to accomodate all the scenarios/rquirements for Motion Voting Programme.
 			o the number of yes and no votes
 			o the time that voting opened and closed
   
-  	4) void castVotingOnMotion(final int motionId, final int voterId, final Enum<VoteState> voteState,final boolean isVicePresedent)	throws MaximumVoteOnMotionException, MotionException, DuplicateVoteException, VicePresidentVoteException
+  	4) void castVotingOnMotion(final int motionId, final int voterId, final Enum<VoteState> voteState,final boolean isVicePresedent) throws MaximumVoteOnMotionException, MotionException, DuplicateVoteException, VicePresidentVoteException
 	
 		o Checks various voting on Motion conditions.
 	 
-	  	o Checks for Motion OPENED for Voting, Duplicate Voters, Maximum number of Votes, VP voting conditions.
+	  	o Checks for Motion OPENED for Voting, Duplicate Voters, Maximum number of Votes, VP voting conditions along with chaning Motion State & Motion Status.
 			
 			
   	5) void setMotionState(final int motionId) throws MotionException
