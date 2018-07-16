@@ -25,7 +25,7 @@ motion passes or fails.
 
 • If voting is a tie, then an attempt to close the motion for voting will cause it to enter a special “tied” state.
 
-  	o In the tied state, the Vice-president of the United States is the only person allowed to vote on the motion. Once the VP 		votes, the motion is automatically closed.
+  	o In the tied state, the Vice-president of the United States is the only person allowed to vote on the motion. Once the VP votes, the motion is automatically closed.
   
  	o The VP is only allowed to vote on motions that are in the tied state.
   
