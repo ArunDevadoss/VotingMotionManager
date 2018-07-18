@@ -25,19 +25,19 @@ import com.mm.po.motion.vote.exception.VicePresidentVoteException;
  */
 public class MotionTest {
 
-	// private VotingMotionManager votingMotionManager;
+	// private motion motion;
 
 	// private Map<Integer, Motion> motionMap;
 
 	@Before
 	public void setUp() {
-		// votingMotionManager = new VotingMotionManager();
+		// motion = new motion();
 		// motionMap = new HashMap<>();
 	}
 
 	@After
 	public void tearDown() {
-		// votingMotionManager = null;
+		// motion = null;
 		// motionMap = null;
 	}
 
@@ -120,7 +120,7 @@ public class MotionTest {
 	// @Test(expected = MotionException.class)
 	// public void get_Motion_Results() throws MotionException {
 	//
-	// votingMotionManager.getMotionResult(1);
+	// motion.getMotionResult(1);
 	//
 	// }
 
@@ -681,352 +681,335 @@ public class MotionTest {
 	 * @throws DuplicateVoteException
 	 * @throws VicePresidentVoteException
 	 */
-	/*
-	 * @Test public void
-	 * castVotingOnMotion_Motion_Tied_VP_Votes_Motion_Closed_Passed() throws
-	 * MaximumVoteOnMotionException, MotionException, DuplicateVoteException,
-	 * VicePresidentVoteException {
-	 * 
-	 * constructMotion(1);
-	 * 
-	 * votingMotionManager.setMotionMap(motionMap);
-	 * votingMotionManager.castVotingOnMotion(1, 1, VoteState.Y, false);
-	 * votingMotionManager.castVotingOnMotion(1, 2, VoteState.N, false);
-	 * votingMotionManager.castVotingOnMotion(1, 3, VoteState.Y, false);
-	 * votingMotionManager.castVotingOnMotion(1, 4, VoteState.N, false);
-	 * 
-	 * votingMotionManager.setMotionState(1); assertEquals(MotionState.TIED,
-	 * votingMotionManager.getMotionMap().get(1).getMotionState());
-	 * 
-	 * votingMotionManager.castVotingOnMotion(1, 5, VoteState.Y, true);
-	 * assertEquals(MotionStatus.CLOSED,
-	 * votingMotionManager.getMotionMap().get(1).getMotionStatus());
-	 * 
-	 * votingMotionManager.setMotionState(1); assertEquals(MotionState.PASSED,
-	 * votingMotionManager.getMotionMap().get(1).getMotionState());
-	 * 
-	 * }
-	 * 
-	 *//**
-		 * Use Case 6 C: In the tied state, the Vice-president of the United States is
-		 * the only person allowed to vote on the motion. Once the VP votes, the motion
-		 * is automatically closed. Motion Passed, out of 5 votes , 3 Yes and 2 No(VP
-		 * Votes 'Y')
-		 * 
-		 * @throws MaximumVoteOnMotionException
-		 * @throws MotionException
-		 * @throws DuplicateVoteException
-		 * @throws VicePresidentVoteException
-		 */
-	/*
-	 * @Test(expected = VicePresidentVoteException.class) public void
-	 * castVotingOnMotion_Motion_Tied_VP_Votes_Negate_Tied() throws
-	 * MaximumVoteOnMotionException, MotionException, DuplicateVoteException,
-	 * VicePresidentVoteException {
-	 * 
-	 * constructMotion(1);
-	 * 
-	 * votingMotionManager.setMotionMap(motionMap);
-	 * votingMotionManager.castVotingOnMotion(1, 1, VoteState.Y, false);
-	 * votingMotionManager.castVotingOnMotion(1, 2, VoteState.Y, false);
-	 * votingMotionManager.castVotingOnMotion(1, 3, VoteState.Y, false);
-	 * votingMotionManager.castVotingOnMotion(1, 4, VoteState.N, false);
-	 * 
-	 * votingMotionManager.setMotionState(1); assertEquals(MotionState.PASSED,
-	 * votingMotionManager.getMotionMap().get(1).getMotionState());
-	 * 
-	 * votingMotionManager.castVotingOnMotion(1, 5, VoteState.Y, true);
-	 * 
-	 * }
-	 * 
-	 *//**
-		 * Use Case 6 D: If the VP is not available to vote, then voting can be forced
-		 * to the closed state which causes the motion to fail.
-		 * 
-		 * @throws MaximumVoteOnMotionException
-		 * @throws MotionException
-		 * @throws DuplicateVoteException
-		 * @throws VicePresidentVoteException
-		 */
-	/*
-	 * @Test public void
-	 * castVotingOnMotion_Motion_Tied_VP_Not_Available_Motion_Closed_Failed() throws
-	 * MaximumVoteOnMotionException, MotionException, DuplicateVoteException,
-	 * VicePresidentVoteException {
-	 * 
-	 * constructMotion(1);
-	 * 
-	 * votingMotionManager.setMotionMap(motionMap);
-	 * votingMotionManager.castVotingOnMotion(1, 1, VoteState.Y, false);
-	 * votingMotionManager.castVotingOnMotion(1, 2, VoteState.N, false);
-	 * votingMotionManager.castVotingOnMotion(1, 3, VoteState.Y, false);
-	 * votingMotionManager.castVotingOnMotion(1, 4, VoteState.N, false);
-	 * 
-	 * votingMotionManager.setMotionState(1); assertEquals(MotionState.TIED,
-	 * votingMotionManager.getMotionMap().get(1).getMotionState());
-	 * 
-	 * votingMotionManager.castVotingOnMotion(1, 5, VoteState.Y, false);
-	 * assertEquals(MotionStatus.CLOSED,
-	 * votingMotionManager.getMotionMap().get(1).getMotionStatus());
-	 * 
-	 * assertEquals(MotionState.FAILED,
-	 * votingMotionManager.getMotionMap().get(1).getMotionState());
-	 * 
-	 * }
-	 * 
-	 *//**
-		 * Use Case 7: The code must support a query to discover the current state of a
-		 * motion.
-		 * 
-		 * @throws MaximumVoteOnMotionException
-		 * @throws MotionException
-		 * @throws DuplicateVoteException
-		 * @throws VicePresidentVoteException
-		 */
-	/*
-	 * @Test public void current_Motion_State() throws MaximumVoteOnMotionException,
-	 * MotionException, DuplicateVoteException, VicePresidentVoteException {
-	 * 
-	 * constructMotion(1);
-	 * 
-	 * votingMotionManager.setMotionMap(motionMap);
-	 * votingMotionManager.castVotingOnMotion(1, 1, VoteState.Y, false);
-	 * votingMotionManager.castVotingOnMotion(1, 2, VoteState.N, false);
-	 * votingMotionManager.castVotingOnMotion(1, 3, VoteState.Y, false);
-	 * votingMotionManager.castVotingOnMotion(1, 4, VoteState.N, false);
-	 * 
-	 * votingMotionManager.setMotionState(1);
-	 * assertEquals(MotionState.TIED.toString(),
-	 * votingMotionManager.getMotionState(1));
-	 * 
-	 * }
-	 * 
-	 *//**
-		 * 
-		 * @throws MotionException
-		 */
-	/*
-	 * @Test(expected = MotionException.class) public void
-	 * set_Motion_State_Exception() throws MotionException {
-	 * 
-	 * votingMotionManager.setMotionMap(motionMap);
-	 * 
-	 * votingMotionManager.setMotionState(1);
-	 * 
-	 * }
-	 * 
-	 *//**
-		 * 
-		 * @throws MotionException
-		 * @throws VicePresidentVoteException
-		 * @throws DuplicateVoteException
-		 * @throws MaximumVoteOnMotionException
-		 * @throws CloseVotingException
-		 */
-	/*
-	 * @Test(expected = MotionException.class) public void
-	 * castVotingOnMotion_ClosedMotion_MotionException() throws MotionException,
-	 * MaximumVoteOnMotionException, DuplicateVoteException,
-	 * VicePresidentVoteException, CloseVotingException {
-	 * 
-	 * constructMotion(1, LocalDateTime.now().minusMinutes(30));
-	 * 
-	 * votingMotionManager.setMotionMap(motionMap);
-	 * votingMotionManager.castVotingOnMotion(1, 1, VoteState.Y, false);
-	 * votingMotionManager.castVotingOnMotion(1, 2, VoteState.N, false);
-	 * votingMotionManager.castVotingOnMotion(1, 3, VoteState.Y, false);
-	 * votingMotionManager.castVotingOnMotion(1, 4, VoteState.N, false);
-	 * 
-	 * votingMotionManager.closeVotingOnMotion(1);
-	 * 
-	 * votingMotionManager.castVotingOnMotion(1, 4, VoteState.N, false); }
-	 * 
-	 *//**
-		 * 
-		 * 
-		 * @throws MaximumVoteOnMotionException
-		 * @throws MotionException
-		 * @throws DuplicateVoteException
-		 * @throws VicePresidentVoteException
-		 */
-	/*
-	 * @Test(expected = MotionException.class) public void
-	 * current_Motion_State_Exception() throws MaximumVoteOnMotionException,
-	 * MotionException, DuplicateVoteException, VicePresidentVoteException {
-	 * 
-	 * votingMotionManager.setMotionMap(motionMap);
-	 * 
-	 * votingMotionManager.getMotionState(1);
-	 * 
-	 * }
-	 * 
-	 *//**
-		 * Motion Passed , out of 3 votes , 2 Yes and 1 No.
-		 * 
-		 * @throws MaximumVoteOnMotionException
-		 * @throws MotionException
-		 * @throws DuplicateVoteException
-		 * @throws VicePresidentVoteException
-		 */
-	/*
-	 * @Test public void castVotingOnMotion_Motion_State_Pass() throws
-	 * MaximumVoteOnMotionException, MotionException, DuplicateVoteException,
-	 * VicePresidentVoteException {
-	 * 
-	 * constructMotion(1);
-	 * 
-	 * votingMotionManager.setMotionMap(motionMap);
-	 * votingMotionManager.castVotingOnMotion(1, 1, VoteState.Y, false);
-	 * votingMotionManager.castVotingOnMotion(1, 2, VoteState.N, false);
-	 * votingMotionManager.castVotingOnMotion(1, 3, VoteState.Y, false);
-	 * 
-	 * votingMotionManager.setMotionState(1);
-	 * 
-	 * assertEquals(MotionState.PASSED,
-	 * votingMotionManager.getMotionMap().get(1).getMotionState());
-	 * 
-	 * }
-	 * 
-	 *//**
-		 * Motion Failed , out of 3 votes , 1 Yes and 2 No.
-		 * 
-		 * @throws MaximumVoteOnMotionException
-		 * @throws MotionException
-		 * @throws DuplicateVoteException
-		 * @throws VicePresidentVoteException
-		 */
-	/*
-	 * @Test public void castVotingOnMotion_Motion_State_Failed() throws
-	 * MaximumVoteOnMotionException, MotionException, DuplicateVoteException,
-	 * VicePresidentVoteException {
-	 * 
-	 * constructMotion(1);
-	 * 
-	 * votingMotionManager.setMotionMap(motionMap);
-	 * votingMotionManager.castVotingOnMotion(1, 1, VoteState.Y, false);
-	 * votingMotionManager.castVotingOnMotion(1, 2, VoteState.N, false);
-	 * votingMotionManager.castVotingOnMotion(1, 3, VoteState.N, false);
-	 * 
-	 * votingMotionManager.setMotionState(1);
-	 * 
-	 * assertEquals(MotionState.FAILED,
-	 * votingMotionManager.getMotionMap().get(1).getMotionState());
-	 * 
-	 * }
-	 * 
-	 *//**
-		 * Motion Tied , out of 4 votes , 2 Yes and 2 No.
-		 * 
-		 * @throws MaximumVoteOnMotionException
-		 * @throws MotionException
-		 * @throws DuplicateVoteException
-		 * @throws VicePresidentVoteException
-		 */
-	/*
-	 * @Test public void castVotingOnMotion_Motion_State_Tied() throws
-	 * MaximumVoteOnMotionException, MotionException, DuplicateVoteException,
-	 * VicePresidentVoteException {
-	 * 
-	 * constructMotion(1);
-	 * 
-	 * votingMotionManager.setMotionMap(motionMap);
-	 * votingMotionManager.castVotingOnMotion(1, 1, VoteState.Y, false);
-	 * votingMotionManager.castVotingOnMotion(1, 2, VoteState.N, false);
-	 * votingMotionManager.castVotingOnMotion(1, 3, VoteState.Y, false);
-	 * votingMotionManager.castVotingOnMotion(1, 4, VoteState.N, false);
-	 * 
-	 * votingMotionManager.setMotionState(1);
-	 * 
-	 * assertEquals(MotionState.TIED,
-	 * votingMotionManager.getMotionMap().get(1).getMotionState());
-	 * 
-	 * }
-	 * 
-	 *//**
-		 * Motion 1 Passed , out of 3 votes , 2 Yes and 1 No. Motion 2 Failed , out of 3
-		 * votes , 1 Yes and 2 No. Motion 3 Tied , out of 4 votes , 2 Yes and 2 No.
-		 * 
-		 * @throws MaximumVoteOnMotionException
-		 * @throws MotionException
-		 * @throws DuplicateVoteException
-		 * @throws VicePresidentVoteException
-		 */
-	/*
-	 * @Test public void castVotingOnMotion_Three_Motions() throws
-	 * MaximumVoteOnMotionException, MotionException, DuplicateVoteException,
-	 * VicePresidentVoteException {
-	 * 
-	 * constructMotion(1);
-	 * 
-	 * constructMotion(2);
-	 * 
-	 * constructMotion(3);
-	 * 
-	 * votingMotionManager.setMotionMap(motionMap);
-	 * 
-	 * votingMotionManager.castVotingOnMotion(1, 1, VoteState.Y, false);
-	 * votingMotionManager.castVotingOnMotion(1, 2, VoteState.N, false);
-	 * votingMotionManager.castVotingOnMotion(1, 3, VoteState.Y, false);
-	 * 
-	 * votingMotionManager.castVotingOnMotion(2, 1, VoteState.Y, false);
-	 * votingMotionManager.castVotingOnMotion(2, 2, VoteState.N, false);
-	 * votingMotionManager.castVotingOnMotion(2, 3, VoteState.N, false);
-	 * 
-	 * votingMotionManager.castVotingOnMotion(3, 1, VoteState.Y, false);
-	 * votingMotionManager.castVotingOnMotion(3, 2, VoteState.N, false);
-	 * votingMotionManager.castVotingOnMotion(3, 3, VoteState.Y, false);
-	 * votingMotionManager.castVotingOnMotion(3, 4, VoteState.N, false);
-	 * 
-	 * votingMotionManager.setMotionState(1); votingMotionManager.setMotionState(2);
-	 * votingMotionManager.setMotionState(3);
-	 * 
-	 * assertEquals(MotionState.PASSED,
-	 * votingMotionManager.getMotionMap().get(1).getMotionState());
-	 * assertEquals(MotionState.FAILED,
-	 * votingMotionManager.getMotionMap().get(2).getMotionState());
-	 * assertEquals(MotionState.TIED,
-	 * votingMotionManager.getMotionMap().get(3).getMotionState());
-	 * 
-	 * }
-	 * 
-	 *//**
-		 * Checking Voter State(Yes/No)
-		 * 
-		 * @throws MaximumVoteOnMotionException
-		 * @throws MotionException
-		 * @throws DuplicateVoteException
-		 * @throws VicePresidentVoteException
-		 */
 
-	/*
-	 * @Test public void castVotingOnMotion_Voter_State() throws
-	 * MaximumVoteOnMotionException, MotionException, DuplicateVoteException,
-	 * VicePresidentVoteException {
+	@Test
+	public void castVotingOnMotion_Motion_Tied_VP_Votes_Motion_Closed_Passed()
+			throws MaximumVoteOnMotionException, MotionException, DuplicateVoteException, VicePresidentVoteException {
+
+		Motion motion = constructMotion();
+
+		motion.castVotingOnMotion(1, VoteState.Y, false);
+		motion.castVotingOnMotion(2, VoteState.N, false);
+		motion.castVotingOnMotion(3, VoteState.Y, false);
+		motion.castVotingOnMotion(4, VoteState.N, false);
+
+		motion.setMotionState();
+		assertEquals(MotionState.TIED, motion.getMotionState());
+
+		motion.castVotingOnMotion(5, VoteState.Y, true);
+		assertEquals(MotionStatus.CLOSED, motion.getMotionStatus());
+
+		motion.setMotionState();
+		assertEquals(MotionState.PASSED, motion.getMotionState());
+
+	}
+
+	/**
+	 * Use Case 6 C: In the tied state, the Vice-president of the United States is
+	 * the only person allowed to vote on the motion. Once the VP votes, the motion
+	 * is automatically closed. Motion Passed, out of 5 votes , 3 Yes and 2 No(VP
+	 * Votes 'Y')
 	 * 
-	 * constructMotion(1);
+	 * @throws MaximumVoteOnMotionException
+	 * @throws MotionException
+	 * @throws DuplicateVoteException
+	 * @throws VicePresidentVoteException
+	 */
+
+	@Test(expected = VicePresidentVoteException.class)
+	public void castVotingOnMotion_Motion_Tied_VP_Votes_Negate_Tied()
+			throws MaximumVoteOnMotionException, MotionException, DuplicateVoteException, VicePresidentVoteException {
+
+		Motion motion = constructMotion();
+
+		motion.castVotingOnMotion(1, VoteState.Y, false);
+		motion.castVotingOnMotion(2, VoteState.Y, false);
+		motion.castVotingOnMotion(3, VoteState.Y, false);
+		motion.castVotingOnMotion(4, VoteState.N, false);
+
+		motion.setMotionState();
+		assertEquals(MotionState.PASSED, motion.getMotionState());
+
+		motion.castVotingOnMotion(5, VoteState.Y, true);
+
+	}
+
+	/**
+	 * Use Case 6 D: If the VP is not available to vote, then voting can be forced
+	 * to the closed state which causes the motion to fail.
 	 * 
-	 * votingMotionManager.setMotionMap(motionMap);
-	 * votingMotionManager.castVotingOnMotion(1, 1, VoteState.Y, false);
-	 * votingMotionManager.castVotingOnMotion(1, 2, VoteState.Y, false);
-	 * votingMotionManager.castVotingOnMotion(1, 3, VoteState.Y, false);
-	 * votingMotionManager.castVotingOnMotion(1, 4, VoteState.Y, false);
-	 * votingMotionManager.castVotingOnMotion(1, 5, VoteState.Y, false);
-	 * votingMotionManager.castVotingOnMotion(1, 6, VoteState.Y, false);
-	 * votingMotionManager.castVotingOnMotion(1, 7, VoteState.Y, false);
-	 * votingMotionManager.castVotingOnMotion(1, 8, VoteState.N, false);
-	 * votingMotionManager.castVotingOnMotion(1, 9, VoteState.Y, false);
-	 * votingMotionManager.castVotingOnMotion(1, 10, VoteState.Y, false);
+	 * @throws MaximumVoteOnMotionException
+	 * @throws MotionException
+	 * @throws DuplicateVoteException
+	 * @throws VicePresidentVoteException
+	 */
+
+	@Test
+	public void castVotingOnMotion_Motion_Tied_VP_Not_Available_Motion_Closed_Failed()
+			throws MaximumVoteOnMotionException, MotionException, DuplicateVoteException, VicePresidentVoteException {
+
+		Motion motion = constructMotion();
+
+		motion.castVotingOnMotion(1, VoteState.Y, false);
+		motion.castVotingOnMotion(2, VoteState.N, false);
+		motion.castVotingOnMotion(3, VoteState.Y, false);
+		motion.castVotingOnMotion(4, VoteState.N, false);
+
+		motion.setMotionState();
+		assertEquals(MotionState.TIED, motion.getMotionState());
+
+		motion.castVotingOnMotion(5, VoteState.Y, false);
+		assertEquals(MotionStatus.CLOSED, motion.getMotionStatus());
+
+		assertEquals(MotionState.FAILED, motion.getMotionState());
+
+	}
+
+	/**
+	 * Use Case 7: The code must support a query to discover the current state of a
+	 * motion.
 	 * 
-	 * assertEquals(VoteState.N,
-	 * votingMotionManager.getMotionMap().get(1).getVoters().stream() .filter(m ->
-	 * m.getVoterId() == 8).findAny().get().getVoteState());
+	 * @throws MaximumVoteOnMotionException
+	 * @throws MotionException
+	 * @throws DuplicateVoteException
+	 * @throws VicePresidentVoteException
+	 */
+
+	@Test
+	public void current_Motion_State()
+			throws MaximumVoteOnMotionException, MotionException, DuplicateVoteException, VicePresidentVoteException {
+
+		Motion motion = constructMotion();
+
+		motion.castVotingOnMotion(1, VoteState.Y, false);
+		motion.castVotingOnMotion(2, VoteState.N, false);
+		motion.castVotingOnMotion(3, VoteState.Y, false);
+		motion.castVotingOnMotion(4, VoteState.N, false);
+
+		motion.setMotionState();
+		assertEquals(MotionState.TIED, motion.getMotionState());
+
+	}
+
+	// /**
+	// *
+	// * @throws MotionException
+	// */
+	//
+	// @Test(expected = MotionException.class)
+	// public void set_Motion_State_Exception() throws MotionException {
+	//
+	// motion.setMotionMap(motionMap);
+	//
+	// motion.setMotionState(1);
+	//
+	// }
+
+	/**
 	 * 
-	 * }
+	 * @throws MotionException
+	 * @throws VicePresidentVoteException
+	 * @throws DuplicateVoteException
+	 * @throws MaximumVoteOnMotionException
+	 * @throws CloseVotingException
+	 */
+
+	@Test(expected = MotionException.class)
+	public void castVotingOnMotion_ClosedMotion_MotionException() throws MotionException, MaximumVoteOnMotionException,
+			DuplicateVoteException, VicePresidentVoteException, CloseVotingException {
+
+		Motion motion = constructMotion(LocalDateTime.now().minusMinutes(30));
+
+		motion.castVotingOnMotion(1, VoteState.Y, false);
+		motion.castVotingOnMotion(2, VoteState.N, false);
+		motion.castVotingOnMotion(3, VoteState.Y, false);
+		motion.castVotingOnMotion(4, VoteState.N, false);
+
+		motion.closeVotingOnMotion();
+
+		motion.castVotingOnMotion(4, VoteState.N, false);
+	}
+
+	/**
 	 * 
-	 *//**
-		 * 
-		 * @param motionId
-		 */
+	 * 
+	 * @throws MaximumVoteOnMotionException
+	 * @throws MotionException
+	 * @throws DuplicateVoteException
+	 * @throws VicePresidentVoteException
+	 */
+
+	// @Test(expected = MotionException.class)
+	// public void current_Motion_State_Exception()
+	// throws MaximumVoteOnMotionException, MotionException, DuplicateVoteException,
+	// VicePresidentVoteException {
+	//
+	// motion.setMotionMap(motionMap);
+	//
+	// motion.getMotionState(1);
+	//
+	// }
+
+	/**
+	 * Motion Passed , out of 3 votes , 2 Yes and 1 No.
+	 * 
+	 * @throws MaximumVoteOnMotionException
+	 * @throws MotionException
+	 * @throws DuplicateVoteException
+	 * @throws VicePresidentVoteException
+	 */
+
+	@Test
+	public void castVotingOnMotion_Motion_State_Pass()
+			throws MaximumVoteOnMotionException, MotionException, DuplicateVoteException, VicePresidentVoteException {
+
+		Motion motion = constructMotion();
+
+		motion.castVotingOnMotion(1, VoteState.Y, false);
+		motion.castVotingOnMotion(2, VoteState.N, false);
+		motion.castVotingOnMotion(3, VoteState.Y, false);
+
+		motion.setMotionState();
+
+		assertEquals(MotionState.PASSED, motion.getMotionState());
+
+	}
+
+	/**
+	 * Motion Failed , out of 3 votes , 1 Yes and 2 No.
+	 * 
+	 * @throws MaximumVoteOnMotionException
+	 * @throws MotionException
+	 * @throws DuplicateVoteException
+	 * @throws VicePresidentVoteException
+	 */
+
+	@Test
+	public void castVotingOnMotion_Motion_State_Failed()
+			throws MaximumVoteOnMotionException, MotionException, DuplicateVoteException, VicePresidentVoteException {
+
+		Motion motion = constructMotion();
+
+		motion.castVotingOnMotion(1, VoteState.Y, false);
+		motion.castVotingOnMotion(2, VoteState.N, false);
+		motion.castVotingOnMotion(3, VoteState.N, false);
+
+		motion.setMotionState();
+
+		assertEquals(MotionState.FAILED, motion.getMotionState());
+
+	}
+
+	/**
+	 * Motion Tied , out of 4 votes , 2 Yes and 2 No.
+	 * 
+	 * @throws MaximumVoteOnMotionException
+	 * @throws MotionException
+	 * @throws DuplicateVoteException
+	 * @throws VicePresidentVoteException
+	 */
+
+	@Test
+	public void castVotingOnMotion_Motion_State_Tied()
+			throws MaximumVoteOnMotionException, MotionException, DuplicateVoteException, VicePresidentVoteException {
+
+		Motion motion = constructMotion();
+
+		motion.castVotingOnMotion(1, VoteState.Y, false);
+		motion.castVotingOnMotion(2, VoteState.N, false);
+		motion.castVotingOnMotion(3, VoteState.Y, false);
+		motion.castVotingOnMotion(4, VoteState.N, false);
+
+		motion.setMotionState();
+
+		assertEquals(MotionState.TIED, motion.getMotionState());
+
+	}
+
+	/**
+	 * Motion 1 Passed , out of 3 votes , 2 Yes and 1 No. Motion 2 Failed , out of 3
+	 * votes , 1 Yes and 2 No. Motion 3 Tied , out of 4 votes , 2 Yes and 2 No.
+	 * 
+	 * @throws MaximumVoteOnMotionException
+	 * @throws MotionException
+	 * @throws DuplicateVoteException
+	 * @throws VicePresidentVoteException
+	 */
+
+	// @Test
+	// public void castVotingOnMotion_Three_Motions()
+	// throws MaximumVoteOnMotionException, MotionException, DuplicateVoteException,
+	// VicePresidentVoteException {
+	//
+	// constructMotion(1);
+	//
+	// constructMotion(2);
+	//
+	// constructMotion(3);
+	//
+	// motion.setMotionMap(motionMap);
+	//
+	// motion.castVotingOnMotion(1, 1, VoteState.Y, false);
+	// motion.castVotingOnMotion(1, 2, VoteState.N, false);
+	// motion.castVotingOnMotion(1, 3, VoteState.Y, false);
+	//
+	// motion.castVotingOnMotion(2, 1, VoteState.Y, false);
+	// motion.castVotingOnMotion(2, 2, VoteState.N, false);
+	// motion.castVotingOnMotion(2, 3, VoteState.N, false);
+	//
+	// motion.castVotingOnMotion(3, 1, VoteState.Y, false);
+	// motion.castVotingOnMotion(3, 2, VoteState.N, false);
+	// motion.castVotingOnMotion(3, 3, VoteState.Y, false);
+	// motion.castVotingOnMotion(3, 4, VoteState.N, false);
+	//
+	// motion.setMotionState(1);
+	// motion.setMotionState(2);
+	// motion.setMotionState(3);
+	//
+	// assertEquals(MotionState.PASSED,
+	// motion.getMotionMap().get(1).getMotionState());
+	// assertEquals(MotionState.FAILED,
+	// motion.getMotionMap().get(2).getMotionState());
+	// assertEquals(MotionState.TIED,
+	// motion.getMotionMap().get(3).getMotionState());
+	//
+	// }
+	//
+	/**
+	 * Checking Voter State(Yes/No)
+	 * 
+	 * @throws MaximumVoteOnMotionException
+	 * @throws MotionException
+	 * @throws DuplicateVoteException
+	 * @throws VicePresidentVoteException
+	 */
+
+	@Test
+	public void castVotingOnMotion_Voter_State()
+			throws MaximumVoteOnMotionException, MotionException, DuplicateVoteException, VicePresidentVoteException {
+
+		Motion motion = constructMotion();
+
+		motion.castVotingOnMotion(1, VoteState.Y, false);
+		motion.castVotingOnMotion(2, VoteState.Y, false);
+		motion.castVotingOnMotion(3, VoteState.Y, false);
+		motion.castVotingOnMotion(4, VoteState.Y, false);
+		motion.castVotingOnMotion(5, VoteState.Y, false);
+		motion.castVotingOnMotion(6, VoteState.Y, false);
+		motion.castVotingOnMotion(7, VoteState.Y, false);
+		motion.castVotingOnMotion(8, VoteState.N, false);
+		motion.castVotingOnMotion(9, VoteState.Y, false);
+		motion.castVotingOnMotion(10, VoteState.Y, false);
+
+		assertEquals(VoteState.N,
+				motion.getVoters().stream().filter(m -> m.getVoterId() == 8).findAny().get().getVoteState());
+
+	}
+
+	/**
+	 * 
+	 * @param motionId
+	 */
 
 	private Motion constructMotion() {
 		Motion motion = new Motion();
