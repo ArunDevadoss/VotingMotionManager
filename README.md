@@ -153,7 +153,7 @@ DateTime related methods are added in this Utils
 	
 	2) This programme is not a standalone code, hence Motion & Voter informations are not captured through command lines.
 	
-	3) All scenarios are tested with JUnit. Mocked Motion & Voter informations according to the different scenarios and assertained. Has 25 test cases with boundry conditions, exception cases, happy path, negative conditions with 94.4% of code coverage. 
+	3) All scenarios are tested with JUnit. Mocked Motion & Voter informations according to the different scenarios and assertained. Has 21 test cases with boundry conditions, exception cases, happy path, negative conditions with 95.9% of code coverage. 
 	
 	4) Some of the Motion information such as Name, Description etc are not captured as part of the design/coding, as the requirment  doesn't talk about it.
 	
