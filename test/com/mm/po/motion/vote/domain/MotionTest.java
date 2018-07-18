@@ -25,20 +25,12 @@ import com.mm.po.motion.vote.exception.VicePresidentVoteException;
  */
 public class MotionTest {
 
-	// private motion motion;
-
-	// private Map<Integer, Motion> motionMap;
-
 	@Before
 	public void setUp() {
-		// motion = new motion();
-		// motionMap = new HashMap<>();
 	}
 
 	@After
 	public void tearDown() {
-		// motion = null;
-		// motionMap = null;
 	}
 
 	/**
@@ -1007,6 +999,7 @@ public class MotionTest {
 	}
 
 	/**
+	 * TODO: Create Constructor in Motion
 	 * 
 	 * @param motionId
 	 */
