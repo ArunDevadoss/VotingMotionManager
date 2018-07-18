@@ -30,6 +30,10 @@ public class Motion {
 	private long noVoteCounts;
 	private List<Voter> voters = new ArrayList<>();
 
+	public Motion(LocalDateTime openedtime) {
+		this.openedTime = openedtime;
+	}
+
 	/**
 	 * @return the openedTime
 	 */
@@ -38,26 +42,10 @@ public class Motion {
 	}
 
 	/**
-	 * @param openedTime
-	 *            the openedTime to set
-	 */
-	public void setOpenedTime(LocalDateTime openedTime) {
-		this.openedTime = openedTime;
-	}
-
-	/**
 	 * @return the closedTime
 	 */
 	public LocalDateTime getClosedTime() {
 		return closedTime;
-	}
-
-	/**
-	 * @param closedTime
-	 *            the closedTime to set
-	 */
-	public void setClosedTime(LocalDateTime closedTime) {
-		this.closedTime = closedTime;
 	}
 
 	/**
@@ -70,26 +58,10 @@ public class Motion {
 	}
 
 	/**
-	 * @param motionStatus
-	 *            the motionStatus to set
-	 */
-	public void setMotionStatus(Enum<MotionStatus> motionStatus) {
-		this.motionStatus = motionStatus;
-	}
-
-	/**
 	 * @return the motionState
 	 */
 	public Enum<MotionState> getMotionState() {
 		return motionState;
-	}
-
-	/**
-	 * @param motionState
-	 *            the motionState to set
-	 */
-	public void setMotionState(Enum<MotionState> motionState) {
-		this.motionState = motionState;
 	}
 
 	/**
@@ -107,42 +79,10 @@ public class Motion {
 	}
 
 	/**
-	 * @param yesVotecounts
-	 *            the yesVotecounts to set
-	 */
-	public void setYesVoteCounts(long yesVoteCounts) {
-		this.yesVoteCounts = yesVoteCounts;
-	}
-
-	/**
 	 * @return the noVoteCounts
 	 */
 	public long getNoVoteCounts() {
 		return noVoteCounts;
-	}
-
-	/**
-	 * @param noVoteCounts
-	 *            the noVoteCounts to set
-	 */
-	public void setNoVoteCounts(long noVoteCounts) {
-		this.noVoteCounts = noVoteCounts;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "Motion [openedTime=" + openedTime + ", closedTime=" + closedTime + ", motionStatus=" + motionStatus
-				+ ", motionState=" + motionState + ", yesVoteCounts=" + yesVoteCounts + ", noVoteCounts=" + noVoteCounts
-				+ ", voters=" + voters + "]";
-	}
-
-	public void clearVoters() {
-		voters.clear();
 	}
 
 	/**
@@ -206,7 +146,7 @@ public class Motion {
 			// for the second time . Throw DuplicateVoteException.
 			if (voterIds == 0) {
 
-				this.setMotionStatus(MotionStatus.OPENED);
+				this.motionStatus = MotionStatus.OPENED;
 				// Cast Votes other than Motion TIED state, as VP can vote only when Motion goes
 				// TIED.
 				if (!MotionState.TIED.equals(this.getMotionState())) {
@@ -269,11 +209,11 @@ public class Motion {
 		// VP votes N, Motion FAILED and closed automatically
 		if (isVicePresedent) {
 			setMotionState();
-			this.setMotionStatus(MotionStatus.CLOSED);
+			this.motionStatus = MotionStatus.CLOSED;
 		} else {
 			// VP not available ,Motion FAILED and closed automatically.
-			this.setMotionState(MotionState.FAILED);
-			this.setMotionStatus(MotionStatus.CLOSED);
+			this.motionState = MotionState.FAILED;
+			this.motionStatus = MotionStatus.CLOSED;
 		}
 
 	}
@@ -302,11 +242,11 @@ public class Motion {
 		this.yesVoteCounts = this.getVoters().stream().filter(m -> VoteState.Y.equals(m.getVoteState())).count();
 		this.noVoteCounts = this.getVoters().stream().filter(m -> VoteState.N.equals(m.getVoteState())).count();
 		if (this.yesVoteCounts > this.noVoteCounts) {
-			this.setMotionState(MotionState.PASSED);
+			this.motionState = MotionState.PASSED;
 		} else if (this.yesVoteCounts == this.noVoteCounts) {
-			this.setMotionState(MotionState.TIED);
+			this.motionState = MotionState.TIED;
 		} else {
-			this.setMotionState(MotionState.FAILED);
+			this.motionState = MotionState.FAILED;
 		}
 
 	}
@@ -327,8 +267,8 @@ public class Motion {
 			// A motion cannot be closed for voting less than 15 minutes after it was
 			// opened.
 			if (canMotionClose()) {
-				this.setMotionStatus(MotionStatus.CLOSED);
-				this.setClosedTime(LocalDateTime.now());
+				this.motionStatus = MotionStatus.CLOSED;
+				this.closedTime = LocalDateTime.now();
 
 			} else {
 				throw new CloseVotingException(MotionVotingConstants.MOTION_CANNOT_CLOSED_LESS_THAN_15);
