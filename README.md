@@ -62,27 +62,7 @@ To successfully complete the assignment, follow these instructions:
 
   Motion  - Holds information about Motion(Motion Id, Motion State(PASSED/FAILED/TIED), Motion Status(CLOSED/OPENED) & Voter)
   
-  Voter  - Holds information about Voter and it's state (Yes/No)
-  
-  MotionResult - When a motion is closed for voting, this object will provide the following information
-  
-  	o whether the motion passed or failed
-  
-  	o the number of yes and no votes
-  
-  	o the time that voting opened and closed
-	
-	
-## Note: As I don't want to expose domain object Motion , converting domain object into MotionResult to provide motion information.
-
-
-
-## VotingMotionManager
-
-
-Has independent methods for the given scenarios/requirement and they are all tested using Junit(As per requirement)
-
-Methods to accomodate all the scenarios/rquirements for Motion Voting Programme.
+  Methods to accomodate all the scenarios/rquirements for Motion Voting Programme.
 
 
   	1) String getMotionState(final int motionId) throws MotionException
@@ -116,6 +96,19 @@ Methods to accomodate all the scenarios/rquirements for Motion Voting Programme.
 		o Number of "Y" (Yes) votes less than "N" No votes, Motion is FAILED. 
 		
 		o Equal number of "Y" Yes and "N" No votes, Motion is TIED.
+  
+  Voter  - Holds information about Voter and it's state (Yes/No)
+  
+  MotionResult - When a motion is closed for voting, this object will provide the following information
+  
+  	o whether the motion passed or failed
+  
+  	o the number of yes and no votes
+  
+  	o the time that voting opened and closed
+	
+	
+## Note: As I don't want to expose domain object Motion , converting domain object into MotionResult to provide motion information.
 
 ## Enums
 
