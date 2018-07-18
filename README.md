@@ -65,9 +65,7 @@ To successfully complete the assignment, follow these instructions:
   Methods to accomodate all the scenarios/rquirements for Motion Voting Programme.
 
 
-  	1) String getMotionState(final int motionId) throws MotionException
-	
-		o Returns Current State of a Motion - Passed/Failed/Tied.
+  	1) Motion getMotionState() returns Current State of a Motion - Passed/Failed/Tied.
     		
   	2) void closeVotingOnMotion(final int motionId) throws CloseVotingException, MotionException
 	
@@ -99,9 +97,6 @@ To successfully complete the assignment, follow these instructions:
   
   Voter  - Holds information about Voter and it's state (Yes/No).  
  
-	
-	
-## Note: As I don't want to expose domain object Motion , converting domain object into MotionResult to provide motion information.
 
 ## Enums
 
@@ -142,13 +137,8 @@ DateTime related methods are added in this Utils
 
 ## Assumptions In Design
 
-	1) As per the requirement , all the scenarios/requirements are covered in VotingMotionManager.java and it has been tested completely using JUnit.
-	
-	2) This programme is not a standalone code, hence Motion & Voter informations are not captured through command lines.
 	
 	3) All scenarios are tested with JUnit. Mocked Motion & Voter informations according to the different scenarios and assertained. Has 21 test cases with boundry conditions, exception cases, happy path, negative conditions with 95.9% of code coverage. 
 	
-	4) Some of the Motion information such as Name, Description etc are not captured as part of the design/coding, as the requirment  doesn't talk about it.
 	
-	5) Some of the Voter information such as Voter First Name & Last Name are not captured as part of the design/coding, as the requirement doesn't talk about it.
 
