@@ -647,43 +647,40 @@ public class MotionTest {
 	 * @throws DuplicateVoteException
 	 * @throws VicePresidentVoteException
 	 */
-	/*
-	 * @Test public void
-	 * castVotingOnMotion_Motion_Tied_VP_Votes_Motion_Closed_Failed() throws
-	 * MaximumVoteOnMotionException, MotionException, DuplicateVoteException,
-	 * VicePresidentVoteException {
+
+	@Test
+	public void castVotingOnMotion_Motion_Tied_VP_Votes_Motion_Closed_Failed()
+			throws MaximumVoteOnMotionException, MotionException, DuplicateVoteException, VicePresidentVoteException {
+
+		Motion motion = constructMotion();
+
+		motion.castVotingOnMotion(1, VoteState.Y, false);
+		motion.castVotingOnMotion(2, VoteState.N, false);
+		motion.castVotingOnMotion(3, VoteState.Y, false);
+		motion.castVotingOnMotion(4, VoteState.N, false);
+
+		motion.setMotionState();
+		assertEquals(MotionState.TIED, motion.getMotionState());
+
+		motion.castVotingOnMotion(5, VoteState.N, true);
+		assertEquals(MotionStatus.CLOSED, motion.getMotionStatus());
+
+		motion.setMotionState();
+		assertEquals(MotionState.FAILED, motion.getMotionState());
+
+	}
+
+	/**
+	 * Use Case 6 B: In the tied state, the Vice-president of the United States is
+	 * the only person allowed to vote on the motion. Once the VP votes, the motion
+	 * is automatically closed. Motion Passed, out of 5 votes , 3 Yes and 2 No(VP
+	 * Votes 'Y')
 	 * 
-	 * constructMotion(1);
-	 * 
-	 * votingMotionManager.setMotionMap(motionMap);
-	 * votingMotionManager.castVotingOnMotion(1, 1, VoteState.Y, false);
-	 * votingMotionManager.castVotingOnMotion(1, 2, VoteState.N, false);
-	 * votingMotionManager.castVotingOnMotion(1, 3, VoteState.Y, false);
-	 * votingMotionManager.castVotingOnMotion(1, 4, VoteState.N, false);
-	 * 
-	 * votingMotionManager.setMotionState(1); assertEquals(MotionState.TIED,
-	 * votingMotionManager.getMotionMap().get(1).getMotionState());
-	 * 
-	 * votingMotionManager.castVotingOnMotion(1, 5, VoteState.N, true);
-	 * assertEquals(MotionStatus.CLOSED,
-	 * votingMotionManager.getMotionMap().get(1).getMotionStatus());
-	 * 
-	 * votingMotionManager.setMotionState(1); assertEquals(MotionState.FAILED,
-	 * votingMotionManager.getMotionMap().get(1).getMotionState());
-	 * 
-	 * }
-	 * 
-	 *//**
-		 * Use Case 6 B: In the tied state, the Vice-president of the United States is
-		 * the only person allowed to vote on the motion. Once the VP votes, the motion
-		 * is automatically closed. Motion Passed, out of 5 votes , 3 Yes and 2 No(VP
-		 * Votes 'Y')
-		 * 
-		 * @throws MaximumVoteOnMotionException
-		 * @throws MotionException
-		 * @throws DuplicateVoteException
-		 * @throws VicePresidentVoteException
-		 */
+	 * @throws MaximumVoteOnMotionException
+	 * @throws MotionException
+	 * @throws DuplicateVoteException
+	 * @throws VicePresidentVoteException
+	 */
 	/*
 	 * @Test public void
 	 * castVotingOnMotion_Motion_Tied_VP_Votes_Motion_Closed_Passed() throws
