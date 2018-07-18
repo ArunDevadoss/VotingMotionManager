@@ -73,7 +73,7 @@ To successfully complete the assignment, follow these instructions:
 	
 		o CLOSE Motion for voting once done. Checks Motion is eligible for closing. If you try to close Motion within 15 minutes after it was opened , exception will be thrown
   
-  	3) MotionResult getMotionResult(final int motionId) throws MotionException
+  	3) Motion object has the following information, they are asserted using Junit
 	
 		When a motion is CLOSED for voting, a result is returned that describes
 			o whether the motion passed or failed
@@ -97,15 +97,8 @@ To successfully complete the assignment, follow these instructions:
 		
 		o Equal number of "Y" Yes and "N" No votes, Motion is TIED.
   
-  Voter  - Holds information about Voter and it's state (Yes/No)
-  
-  MotionResult - When a motion is closed for voting, this object will provide the following information
-  
-  	o whether the motion passed or failed
-  
-  	o the number of yes and no votes
-  
-  	o the time that voting opened and closed
+  Voter  - Holds information about Voter and it's state (Yes/No).  
+ 
 	
 	
 ## Note: As I don't want to expose domain object Motion , converting domain object into MotionResult to provide motion information.
