@@ -13,6 +13,19 @@ public class Voter {
 	private Enum<VoteState> voteState;
 
 	/**
+	 * 
+	 */
+	public Voter() {
+
+	}
+
+	public Voter(int voterId, Enum<VoteState> voteState) {
+		super();
+		this.voterId = voterId;
+		this.voteState = voteState;
+	}
+
+	/**
 	 * @return the voterId
 	 */
 	public int getVoterId() {
