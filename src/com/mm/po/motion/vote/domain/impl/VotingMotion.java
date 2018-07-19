@@ -23,12 +23,33 @@ import com.mm.po.motion.vote.util.DateTimeUtils;
  */
 public class VotingMotion implements Motion {
 
+	/**
+	 * Motion Opened Time
+	 */
 	private LocalDateTime openedTime;
+	/**
+	 * Motion Closed Time
+	 */
 	private LocalDateTime closedTime;
+	/**
+	 * Motion Status - OPENED/CLOSED.
+	 */
 	private Enum<MotionStatus> motionStatus;
+	/**
+	 * Motion State - PASSED/FAILED/TIED.
+	 */
 	private Enum<MotionState> motionState;
+	/**
+	 * Number of 'YES' Vote Counts
+	 */
 	private long yesVoteCounts;
+	/**
+	 * Number of 'NO' vote Counts
+	 */
 	private long noVoteCounts;
+	/**
+	 * Voter information for the given Motion
+	 */
 	private List<Voter> voters = new ArrayList<>();
 
 	/**
@@ -39,9 +60,6 @@ public class VotingMotion implements Motion {
 		this.openedTime = openedtime;
 	}
 
-	/**
-	 * @return the openedTime
-	 */
 	@Override
 	public LocalDateTime getOpenedTime() {
 		return openedTime;
@@ -55,61 +73,30 @@ public class VotingMotion implements Motion {
 		return closedTime;
 	}
 
-	/**
-	 * Current State whether Motion Passed/Failed/Tied.
-	 * 
-	 * @return the motionStatus
-	 */
 	@Override
 	public Enum<MotionStatus> getMotionStatus() {
 		return motionStatus;
 	}
 
-	/**
-	 * @return the motionState
-	 */
 	@Override
 	public Enum<MotionState> getMotionState() {
 		return motionState;
 	}
 
-	/**
-	 * @return the voters
-	 */
-	@Override
 	public List<Voter> getVoters() {
 		return voters;
 	}
 
-	/**
-	 * @return the yesVotecounts
-	 */
 	@Override
 	public long getYesVoteCounts() {
 		return yesVoteCounts;
 	}
 
-	/**
-	 * @return the noVoteCounts
-	 */
 	@Override
 	public long getNoVoteCounts() {
 		return noVoteCounts;
 	}
 
-	/**
-	 * castVotingOnMotion, performs core voting on motions logic for the given
-	 * requirements.
-	 * 
-	 * @param motionId
-	 * @param voterId
-	 * @param voteState
-	 * @param isVicePresedent
-	 * @throws MaximumVoteOnMotionException
-	 * @throws MotionException
-	 * @throws DuplicateVoteException
-	 * @throws VicePresidentVoteException
-	 */
 	@Override
 	public void castVotingOnMotion(final int voterId, final Enum<VoteState> voteState, final boolean isVicePresedent)
 			throws MaximumVoteOnMotionException, MotionException, DuplicateVoteException, VicePresidentVoteException {
@@ -124,16 +111,8 @@ public class VotingMotion implements Motion {
 
 	}
 
-	/**
-	 * Sets Motion state to PASSED/FAILED/TIED Number of Yes votes greater than No
-	 * votes, Motion is PASSED. Number of Yes votes less than No votes, Motion is
-	 * FAILED. Equal number of Yes and No votes, Motion is Tied
-	 * 
-	 * @param motionId
-	 * @throws MotionException
-	 */
 	@Override
-	public void setMotionState() throws MotionException {
+	public void setMotionState() {
 
 		this.yesVoteCounts = this.getVoters().stream().filter(m -> VoteState.Y.equals(m.getVoteState())).count();
 		this.noVoteCounts = this.getVoters().stream().filter(m -> VoteState.N.equals(m.getVoteState())).count();
@@ -147,14 +126,6 @@ public class VotingMotion implements Motion {
 
 	}
 
-	/**
-	 * Close Motion on voting once done.
-	 * 
-	 * @param motionId
-	 * @throws MotionNotCreatedException
-	 * @throws CloseVotingException
-	 * @throws MotionException
-	 */
 	@Override
 	public void closeVotingOnMotion() throws CloseVotingException, MotionException {
 
@@ -180,16 +151,20 @@ public class VotingMotion implements Motion {
 	 * Checks for Motion Opened for Voting, Duplicate Voters, Maximum number of
 	 * Votes, VP voting conditions
 	 * 
-	 * @param motionId
 	 * @param voterId
+	 *            Corresponds to one Senator who votes on Motion.
 	 * @param voteState
-	 * @param isVicePresedent
-	 * @param voters
-	 * @param motion
+	 *            YES/NO Votes on Motion.
+	 * @param isVicePresident
+	 *            is the Voter Vice President.
 	 * @throws MaximumVoteOnMotionException
+	 *             if maximum votes reaches 101.
 	 * @throws MotionException
 	 * @throws DuplicateVoteException
+	 *             if the same Senator tries to vote for the second time on the same
+	 *             Motion.
 	 * @throws VicePresidentVoteException
+	 *             if Vice President cast votes other than TIED state.
 	 */
 	private void checkVotingConditions(final int voterId, final Enum<VoteState> voteState,
 			final boolean isVicePresedent)
@@ -244,11 +219,10 @@ public class VotingMotion implements Motion {
 	}
 
 	/**
-	 * true, motion is opened for voting by comparing motion Opened Time and current
-	 * time else false.
 	 * 
-	 * @param motionId
-	 * @return
+	 * 
+	 * @return <t>true</t> if motion is OPENED for voting by comparing Motion Opened
+	 *         Time and Current Time.
 	 */
 	private boolean isMotionOpenedForVoting() {
 
@@ -260,7 +234,7 @@ public class VotingMotion implements Motion {
 	 * Under Motion TIED VP casts votes
 	 * 
 	 * @param isVicePresedent
-	 * @param motion
+	 *            is the Voter Vice President.
 	 * @throws MotionException
 	 */
 	private void closeMotionOnVPVotes(final boolean isVicePresedent) throws MotionException {
@@ -278,23 +252,20 @@ public class VotingMotion implements Motion {
 	}
 
 	/**
-	 * Check maximum number of votes casted on a motion. Maximum number of votes is
-	 * 101(100 senators plus the Vicepresident).
 	 * 
-	 * @param motion
-	 * @return
+	 * @return <t>true</t> if MAXIMUM votes less than or equal to 101
 	 */
 	private boolean isMaximumVoteReceivedOnMotion() {
 		return this.getVoters().size() < MotionVotingConstants.MAX_VOTES_ALLOWED;
 	}
 
 	/**
-	 * Check to close a Motion , when motion is past 15 minutes after opened. Throw
-	 * CloseVotingException , on an already CLOSED Motion.
 	 * 
-	 * @param motion
-	 * @return
+	 * 
+	 * @return<t>true</t> if Motion is past 15 minutes after OPENED
+	 * 
 	 * @throws CloseVotingException
+	 *             if Motion is tries to CLOSE less than 15 minutes after opened.
 	 */
 	private boolean canMotionClose() throws CloseVotingException {
 
@@ -305,6 +276,49 @@ public class VotingMotion implements Motion {
 
 			throw new CloseVotingException(MotionVotingConstants.MOTION_CANNOT_CLOSED);
 
+		}
+
+	}
+
+	/**
+	 * 
+	 * @author Arun Devadoss
+	 *
+	 */
+	private class Voter {
+
+		/**
+		 * Voter Id
+		 */
+		private int voterId;
+		/**
+		 * Vote State - YES/NO
+		 */
+		private Enum<VoteState> voteState;
+
+		/**
+		 * 
+		 * @param voterId
+		 * @param voteState
+		 */
+		public Voter(int voterId, Enum<VoteState> voteState) {
+			super();
+			this.voterId = voterId;
+			this.voteState = voteState;
+		}
+
+		/**
+		 * @return the voterId
+		 */
+		public int getVoterId() {
+			return voterId;
+		}
+
+		/**
+		 * @return the voteState
+		 */
+		public Enum<VoteState> getVoteState() {
+			return voteState;
 		}
 
 	}

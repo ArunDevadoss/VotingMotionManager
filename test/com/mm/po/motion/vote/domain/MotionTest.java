@@ -909,34 +909,4 @@ public class MotionTest {
 
 	}
 
-	/**
-	 * Checking Voter State(Yes/No)
-	 * 
-	 * @throws MaximumVoteOnMotionException
-	 * @throws MotionException
-	 * @throws DuplicateVoteException
-	 * @throws VicePresidentVoteException
-	 */
-
-	@Test
-	public void castVotingOnMotion_Voter_State()
-			throws MaximumVoteOnMotionException, MotionException, DuplicateVoteException, VicePresidentVoteException {
-
-		Motion motion = new VotingMotion(LocalDateTime.now());
-
-		motion.castVotingOnMotion(1, VoteState.Y, false);
-		motion.castVotingOnMotion(2, VoteState.Y, false);
-		motion.castVotingOnMotion(3, VoteState.Y, false);
-		motion.castVotingOnMotion(4, VoteState.Y, false);
-		motion.castVotingOnMotion(5, VoteState.Y, false);
-		motion.castVotingOnMotion(6, VoteState.Y, false);
-		motion.castVotingOnMotion(7, VoteState.Y, false);
-		motion.castVotingOnMotion(8, VoteState.N, false);
-		motion.castVotingOnMotion(9, VoteState.Y, false);
-		motion.castVotingOnMotion(10, VoteState.Y, false);
-
-		assertEquals(VoteState.N, motion.getVoters().get(7).getVoteState());
-
-	}
-
 }

@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 public class DateTimeUtils {
 
 	/**
+	 * Returns true, CurrentTime is after/equal OpenedTime. Otherwise false.
 	 * 
 	 * @param currentTime
 	 * @param openedTime
@@ -21,6 +22,7 @@ public class DateTimeUtils {
 	}
 
 	/**
+	 * Returns Duration between two Times
 	 * 
 	 * @param time
 	 * @param openedTime
