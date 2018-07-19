@@ -9,6 +9,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.mm.po.motion.vote.domain.impl.VotingMotion;
 import com.mm.po.motion.vote.enums.MotionState;
 import com.mm.po.motion.vote.enums.MotionStatus;
 import com.mm.po.motion.vote.enums.VoteState;
@@ -45,7 +46,7 @@ public class MotionTest {
 	public void castVotingOnMotion_MotionNotStarted()
 			throws MaximumVoteOnMotionException, MotionException, DuplicateVoteException, VicePresidentVoteException {
 
-		Motion motion = new Motion(LocalDateTime.now().plusMinutes(10));
+		Motion motion = new VotingMotion(LocalDateTime.now().plusMinutes(10));
 
 		motion.castVotingOnMotion(1, VoteState.Y, false);
 
@@ -66,7 +67,7 @@ public class MotionTest {
 	public void get_Motion_results() throws MaximumVoteOnMotionException, MotionException, DuplicateVoteException,
 			CloseVotingException, VicePresidentVoteException {
 
-		Motion motionOne = new Motion(LocalDateTime.now().minusMinutes(30));
+		Motion motionOne = new VotingMotion(LocalDateTime.now().minusMinutes(30));
 
 		motionOne.castVotingOnMotion(1, VoteState.Y, false);
 		motionOne.castVotingOnMotion(2, VoteState.Y, false);
@@ -82,7 +83,7 @@ public class MotionTest {
 		assertNotNull(motionOne.getOpenedTime());
 		assertNotNull(motionOne.getClosedTime());
 
-		Motion motionTwo = new Motion(LocalDateTime.now().minusMinutes(30));
+		VotingMotion motionTwo = new VotingMotion(LocalDateTime.now().minusMinutes(30));
 		motionTwo.castVotingOnMotion(1, VoteState.Y, false);
 		motionTwo.castVotingOnMotion(2, VoteState.N, false);
 		motionTwo.castVotingOnMotion(3, VoteState.N, false);
@@ -115,7 +116,7 @@ public class MotionTest {
 	public void closeVotingOnMotion_LessThan_15_Minutes() throws MaximumVoteOnMotionException, MotionException,
 			DuplicateVoteException, VicePresidentVoteException, CloseVotingException {
 
-		Motion motion = new Motion(LocalDateTime.now().minusMinutes(10));
+		Motion motion = new VotingMotion(LocalDateTime.now().minusMinutes(10));
 
 		motion.castVotingOnMotion(1, VoteState.Y, false);
 
@@ -138,7 +139,7 @@ public class MotionTest {
 	public void closeVotingOnMotion_Motion_Already_Closed_Exception() throws MaximumVoteOnMotionException,
 			MotionException, DuplicateVoteException, VicePresidentVoteException, CloseVotingException {
 
-		Motion motion = new Motion(LocalDateTime.now().minusMinutes(16));
+		Motion motion = new VotingMotion(LocalDateTime.now().minusMinutes(16));
 
 		motion.castVotingOnMotion(1, VoteState.Y, false);
 
@@ -162,7 +163,7 @@ public class MotionTest {
 	public void closeVotingOnMotion_GreaterThan_15_Minutes() throws MaximumVoteOnMotionException, MotionException,
 			DuplicateVoteException, VicePresidentVoteException, CloseVotingException {
 
-		Motion motion = new Motion(LocalDateTime.now().minusMinutes(16));
+		Motion motion = new VotingMotion(LocalDateTime.now().minusMinutes(16));
 
 		motion.castVotingOnMotion(1, VoteState.Y, false);
 
@@ -186,7 +187,7 @@ public class MotionTest {
 	public void closeVotingOnMotion_MotionDidNot_Started() throws MaximumVoteOnMotionException, MotionException,
 			DuplicateVoteException, VicePresidentVoteException, CloseVotingException {
 
-		Motion motion = new Motion(LocalDateTime.now().plusMinutes(50));
+		VotingMotion motion = new VotingMotion(LocalDateTime.now().plusMinutes(50));
 
 		motion.closeVotingOnMotion();
 
@@ -205,7 +206,7 @@ public class MotionTest {
 	public void castVotingOnMotion_Duplicate_Votes()
 			throws MaximumVoteOnMotionException, MotionException, DuplicateVoteException, VicePresidentVoteException {
 
-		Motion motion = new Motion(LocalDateTime.now());
+		Motion motion = new VotingMotion(LocalDateTime.now());
 		motion.castVotingOnMotion(1, VoteState.Y, false);
 		motion.castVotingOnMotion(1, VoteState.Y, false);
 
@@ -226,7 +227,7 @@ public class MotionTest {
 	public void castVotingOnMotion_Max_Votes_101_Motion_Passed() throws MaximumVoteOnMotionException, MotionException,
 			DuplicateVoteException, VicePresidentVoteException, CloseVotingException {
 
-		Motion motion = new Motion(LocalDateTime.now());
+		Motion motion = new VotingMotion(LocalDateTime.now());
 
 		motion.castVotingOnMotion(1, VoteState.Y, false);
 		motion.castVotingOnMotion(2, VoteState.Y, false);
@@ -360,7 +361,7 @@ public class MotionTest {
 	public void castVotingOnMotion_Max_Votes_101_Motion_Tied() throws MaximumVoteOnMotionException, MotionException,
 			DuplicateVoteException, VicePresidentVoteException, CloseVotingException {
 
-		Motion motion = new Motion(LocalDateTime.now());
+		Motion motion = new VotingMotion(LocalDateTime.now());
 
 		motion.castVotingOnMotion(1, VoteState.Y, false);
 		motion.castVotingOnMotion(2, VoteState.Y, false);
@@ -495,7 +496,7 @@ public class MotionTest {
 	public void castVotingOnMotion_Max_Votes_102() throws MaximumVoteOnMotionException, MotionException,
 			DuplicateVoteException, VicePresidentVoteException, CloseVotingException {
 
-		Motion motion = new Motion(LocalDateTime.now());
+		Motion motion = new VotingMotion(LocalDateTime.now());
 
 		motion.castVotingOnMotion(1, VoteState.Y, false);
 		motion.castVotingOnMotion(2, VoteState.Y, false);
@@ -628,7 +629,7 @@ public class MotionTest {
 	public void castVotingOnMotion_Motion_Tied_VP_Votes_Motion_Closed_Failed()
 			throws MaximumVoteOnMotionException, MotionException, DuplicateVoteException, VicePresidentVoteException {
 
-		Motion motion = new Motion(LocalDateTime.now());
+		Motion motion = new VotingMotion(LocalDateTime.now());
 
 		motion.castVotingOnMotion(1, VoteState.Y, false);
 		motion.castVotingOnMotion(2, VoteState.N, false);
@@ -662,7 +663,7 @@ public class MotionTest {
 	public void castVotingOnMotion_Motion_Tied_VP_Votes_Motion_Closed_Passed()
 			throws MaximumVoteOnMotionException, MotionException, DuplicateVoteException, VicePresidentVoteException {
 
-		Motion motion = new Motion(LocalDateTime.now());
+		Motion motion = new VotingMotion(LocalDateTime.now());
 
 		motion.castVotingOnMotion(1, VoteState.Y, false);
 		motion.castVotingOnMotion(2, VoteState.N, false);
@@ -696,7 +697,7 @@ public class MotionTest {
 	public void castVotingOnMotion_Motion_Tied_VP_Votes_Negate_Tied()
 			throws MaximumVoteOnMotionException, MotionException, DuplicateVoteException, VicePresidentVoteException {
 
-		Motion motion = new Motion(LocalDateTime.now());
+		Motion motion = new VotingMotion(LocalDateTime.now());
 
 		motion.castVotingOnMotion(1, VoteState.Y, false);
 		motion.castVotingOnMotion(2, VoteState.Y, false);
@@ -724,7 +725,7 @@ public class MotionTest {
 	public void castVotingOnMotion_Motion_Tied_VP_Not_Available_Motion_Closed_Failed()
 			throws MaximumVoteOnMotionException, MotionException, DuplicateVoteException, VicePresidentVoteException {
 
-		Motion motion = new Motion(LocalDateTime.now());
+		Motion motion = new VotingMotion(LocalDateTime.now());
 
 		motion.castVotingOnMotion(1, VoteState.Y, false);
 		motion.castVotingOnMotion(2, VoteState.N, false);
@@ -755,7 +756,7 @@ public class MotionTest {
 	public void current_Motion_State()
 			throws MaximumVoteOnMotionException, MotionException, DuplicateVoteException, VicePresidentVoteException {
 
-		Motion motion = new Motion(LocalDateTime.now());
+		Motion motion = new VotingMotion(LocalDateTime.now());
 
 		motion.castVotingOnMotion(1, VoteState.Y, false);
 		motion.castVotingOnMotion(2, VoteState.N, false);
@@ -780,7 +781,7 @@ public class MotionTest {
 	public void castVotingOnMotion_ClosedMotion_MotionException() throws MotionException, MaximumVoteOnMotionException,
 			DuplicateVoteException, VicePresidentVoteException, CloseVotingException {
 
-		Motion motion = new Motion(LocalDateTime.now().minusMinutes(30));
+		Motion motion = new VotingMotion(LocalDateTime.now().minusMinutes(30));
 
 		motion.castVotingOnMotion(1, VoteState.Y, false);
 		motion.castVotingOnMotion(2, VoteState.N, false);
@@ -805,7 +806,7 @@ public class MotionTest {
 	public void castVotingOnMotion_Motion_State_Pass()
 			throws MaximumVoteOnMotionException, MotionException, DuplicateVoteException, VicePresidentVoteException {
 
-		Motion motion = new Motion(LocalDateTime.now());
+		Motion motion = new VotingMotion(LocalDateTime.now());
 
 		motion.castVotingOnMotion(1, VoteState.Y, false);
 		motion.castVotingOnMotion(2, VoteState.N, false);
@@ -830,7 +831,7 @@ public class MotionTest {
 	public void castVotingOnMotion_Motion_State_Failed()
 			throws MaximumVoteOnMotionException, MotionException, DuplicateVoteException, VicePresidentVoteException {
 
-		Motion motion = new Motion(LocalDateTime.now());
+		Motion motion = new VotingMotion(LocalDateTime.now());
 
 		motion.castVotingOnMotion(1, VoteState.Y, false);
 		motion.castVotingOnMotion(2, VoteState.N, false);
@@ -855,7 +856,7 @@ public class MotionTest {
 	public void castVotingOnMotion_Motion_State_Tied()
 			throws MaximumVoteOnMotionException, MotionException, DuplicateVoteException, VicePresidentVoteException {
 
-		Motion motion = new Motion(LocalDateTime.now());
+		Motion motion = new VotingMotion(LocalDateTime.now());
 
 		motion.castVotingOnMotion(1, VoteState.Y, false);
 		motion.castVotingOnMotion(2, VoteState.N, false);
@@ -882,14 +883,14 @@ public class MotionTest {
 	public void castVotingOnMotion_Three_Motions()
 			throws MaximumVoteOnMotionException, MotionException, DuplicateVoteException, VicePresidentVoteException {
 
-		Motion motionOne = new Motion(LocalDateTime.now());
+		Motion motionOne = new VotingMotion(LocalDateTime.now());
 		motionOne.castVotingOnMotion(1, VoteState.Y, false);
 		motionOne.castVotingOnMotion(2, VoteState.N, false);
 		motionOne.castVotingOnMotion(3, VoteState.Y, false);
 		motionOne.setMotionState();
 		assertEquals(MotionState.PASSED, motionOne.getMotionState());
 
-		Motion motionTwo = new Motion(LocalDateTime.now());
+		Motion motionTwo = new VotingMotion(LocalDateTime.now());
 
 		motionTwo.castVotingOnMotion(1, VoteState.Y, false);
 		motionTwo.castVotingOnMotion(2, VoteState.N, false);
@@ -897,7 +898,7 @@ public class MotionTest {
 		motionTwo.setMotionState();
 		assertEquals(MotionState.FAILED, motionTwo.getMotionState());
 
-		Motion motionThree = new Motion(LocalDateTime.now());
+		Motion motionThree = new VotingMotion(LocalDateTime.now());
 
 		motionThree.castVotingOnMotion(1, VoteState.Y, false);
 		motionThree.castVotingOnMotion(2, VoteState.N, false);
@@ -921,7 +922,7 @@ public class MotionTest {
 	public void castVotingOnMotion_Voter_State()
 			throws MaximumVoteOnMotionException, MotionException, DuplicateVoteException, VicePresidentVoteException {
 
-		Motion motion = new Motion(LocalDateTime.now());
+		Motion motion = new VotingMotion(LocalDateTime.now());
 
 		motion.castVotingOnMotion(1, VoteState.Y, false);
 		motion.castVotingOnMotion(2, VoteState.Y, false);
@@ -934,8 +935,7 @@ public class MotionTest {
 		motion.castVotingOnMotion(9, VoteState.Y, false);
 		motion.castVotingOnMotion(10, VoteState.Y, false);
 
-		assertEquals(VoteState.N,
-				motion.getVoters().stream().filter(m -> m.getVoterId() == 8).findAny().get().getVoteState());
+		assertEquals(VoteState.N, motion.getVoters().get(7).getVoteState());
 
 	}
 

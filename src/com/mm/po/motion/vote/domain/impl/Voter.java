@@ -1,4 +1,4 @@
-package com.mm.po.motion.vote.domain;
+package com.mm.po.motion.vote.domain.impl;
 
 import com.mm.po.motion.vote.enums.VoteState;
 
