@@ -30,56 +30,56 @@ public interface Motion {
 	 * @throws DuplicateVoteException
 	 * @throws VicePresidentVoteException
 	 */
-	public void castVotingOnMotion(final int voterId, final Enum<VoteState> voteState, final boolean isVicePresedent)
+	void castVotingOnMotion(final int voterId, final Enum<VoteState> voteState, final boolean isVicePresedent)
 			throws MaximumVoteOnMotionException, MotionException, DuplicateVoteException, VicePresidentVoteException;
 
 	/**
 	 * 
 	 * @throws MotionException
 	 */
-	public void setMotionState() throws MotionException;
+	void setMotionState() throws MotionException;
 
 	/**
 	 * 
 	 * @throws CloseVotingException
 	 * @throws MotionException
 	 */
-	public void closeVotingOnMotion() throws CloseVotingException, MotionException;
+	void closeVotingOnMotion() throws CloseVotingException, MotionException;
 
 	/**
 	 * @return the openedTime
 	 */
-	public LocalDateTime getOpenedTime();
+	LocalDateTime getOpenedTime();
 
 	/**
 	 * @return the closedTime
 	 */
-	public LocalDateTime getClosedTime();
+	LocalDateTime getClosedTime();
 
 	/**
 	 * Current State whether Motion Passed/Failed/Tied.
 	 * 
 	 * @return the motionStatus
 	 */
-	public Enum<MotionStatus> getMotionStatus();
+	Enum<MotionStatus> getMotionStatus();
 
 	/**
 	 * @return the motionState
 	 */
-	public Enum<MotionState> getMotionState();
+	Enum<MotionState> getMotionState();
 
 	/**
 	 * @return the yesVotecounts
 	 */
-	public long getYesVoteCounts();
+	long getYesVoteCounts();
 
 	/**
 	 * @return the noVoteCounts
 	 */
-	public long getNoVoteCounts();
+	long getNoVoteCounts();
 
 	/**
 	 * @return the voters
 	 */
-	public List<Voter> getVoters();
+	List<Voter> getVoters();
 }
