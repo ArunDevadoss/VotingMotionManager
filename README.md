@@ -60,14 +60,14 @@ To successfully complete the assignment, follow these instructions:
 
 ## Interface - Abstraction.
 
-  Motion  - Holds information about Motion(Motion Id, Motion State(PASSED/FAILED/TIED), Motion Status(CLOSED/OPENED) & Voter)
+  Motion  - Holds information about Motion(Motion State(PASSED/FAILED/TIED), Motion Status(CLOSED/OPENED) & Voter)
   
   Methods to accomodate all the scenarios/rquirements for Motion Voting Programme.
 
 
   	1) Motion getMotionState() returns Current State of a Motion - Passed/Failed/Tied.
     		
-  	2) void closeVotingOnMotion(final int motionId) throws CloseVotingException, MotionException
+  	2) void closeVotingOnMotion() throws CloseVotingException, MotionException
 	
 		o CLOSE Motion for voting once done. Checks Motion is eligible for closing. If you try to close Motion within 15 minutes after it was opened , exception will be thrown
   
@@ -78,14 +78,14 @@ To successfully complete the assignment, follow these instructions:
 			o the number of yes and no votes
 			o the time that voting opened and closed
   
-  	4) void castVotingOnMotion(final int motionId, final int voterId, final Enum<VoteState> voteState,final boolean isVicePresedent) throws MaximumVoteOnMotionException, MotionException, DuplicateVoteException, VicePresidentVoteException
+  	4) void castVotingOnMotion(final int voterId, final Enum<VoteState> voteState,final boolean isVicePresedent) throws MaximumVoteOnMotionException, MotionException, DuplicateVoteException, VicePresidentVoteException
 	
 		o Checks various voting on Motion conditions.
 	 
 	  	o Checks for Motion OPENED for Voting, Duplicate Voters, Maximum number of Votes, VP voting conditions along with changing Motion State & Motion Status.
 			
 			
-  	5) void setMotionState(final int motionId) throws MotionException
+  	5) void setMotionState() throws MotionException
 	
 		o Sets Motion state to PASSED/FAILED/TIED.
 		
