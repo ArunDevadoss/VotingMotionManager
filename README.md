@@ -139,10 +139,12 @@ DateTime related methods are added in this Utils
   	1) DateTimeUtils
   
 
-## Assumptions In Design
+## Additional Information.
 
 	
 	1) All scenarios are tested with JUnit. Mocked Motion & Voter informations according to the different scenarios and assertained. Has 20 test cases with boundry conditions, exception cases, happy path, negative conditions with 95.8% of code coverage. 
+	
+	2) Added Java Documentation in folder docs/
 	
 	
 
