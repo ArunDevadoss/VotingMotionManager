@@ -58,7 +58,7 @@ To successfully complete the assignment, follow these instructions:
 
 
 
-## Domain Objects
+## Interface - Abstraction.
 
   Motion  - Holds information about Motion(Motion Id, Motion State(PASSED/FAILED/TIED), Motion Status(CLOSED/OPENED) & Voter)
   
@@ -95,8 +95,12 @@ To successfully complete the assignment, follow these instructions:
 		
 		o Equal number of "Y" Yes and "N" No votes, Motion is TIED.
   
-  Voter  - Holds information about Voter and it's state (Yes/No).  
+  Voter  - Inner Class, Holds information about Voter and it's state (Yes/No).  
  
+## Domain Objects
+
+	VotingMotion - Implementation of Motion .
+	Voter - Inner class holds Voter information.
 
 ## Enums
 
@@ -138,7 +142,7 @@ DateTime related methods are added in this Utils
 ## Assumptions In Design
 
 	
-	3) All scenarios are tested with JUnit. Mocked Motion & Voter informations according to the different scenarios and assertained. Has 21 test cases with boundry conditions, exception cases, happy path, negative conditions with 95.9% of code coverage. 
+	1) All scenarios are tested with JUnit. Mocked Motion & Voter informations according to the different scenarios and assertained. Has 20 test cases with boundry conditions, exception cases, happy path, negative conditions with 95.8% of code coverage. 
 	
 	
 
